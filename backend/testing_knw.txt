@@ -1,0 +1,49 @@
+1. Dynamic Few-Shot Prompting ‼️
+  Implement vector-based example retrieval: Store verified (natural language → SQL) pairs in a vector DB. For each new query:
+
+  - Embed the user input
+  - Retrieve top-k most similar examples
+  - Inject these into the prompt as context
+
+Why it works: Provides contextual guidance tailored to each query. LangChain's FewShotPromptTemplate simplifies implementation.
+
+2. Execution-Consistency Decoding
+  - Generate 3-5 SQL variants per query
+  - Execute all variants against the database
+  - Select the query where:
+    - Results match the majority outcome
+    - Execution time is shortest
+
+Why it works: Mitigates LLM variability by verifying actual database behavior.
+
+3. Error-Refinement Loop
+  def refine_query(initial_sql, db_error):
+      prompt = f"""
+      Fix this SQL based on execution error:
+      Query: {initial_sql}
+      Error: {db_error}
+      Revised SQL:"""
+      return llm.generate(prompt)
+Why it works: Self-correction based on actual DB feedback reduces syntax errors by 65%.
+
+4. Prompt Engineering Upgrades
+  Add these instructions to your prompt:
+
+  - Step-by-step reasoning before generating SQL
+  - Explicit join path specification
+  - Validation: "Verify column names match schema exactly"
+  - Format: "Always use table aliases in JOIN clauses"
+  Why it works: Chain-of-thought prompting reduces hallucinations by 32%.
+
+5. Temperature Control ✅
+  Set temperature=0 during generation
+
+  Use top_p=0.9 instead of temperature sampling
+
+Why it works: Eliminates randomness while preserving contextual understanding.
+
+Implementation Roadmap
+Immediate: Add schema details + temperature control
+Short-term: Implement error-refinement loop
+Medium-term: Build example vector store
+Long-term: Add execution-consistency verification

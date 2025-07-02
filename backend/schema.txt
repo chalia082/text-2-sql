@@ -1,0 +1,252 @@
+# DATABASE SCHEMA INFORMATION
+# This file contains complete schema information for text-to-SQL generation
+
+Database: t2stest
+Total Tables: 11
+Extracted: 2025-06-25T11:03:32.297621
+
+## TABLE RELATIONSHIPS OVERVIEW
+
+employees references:
+  - reportsto -> employees.employeeid
+
+employeeterritories references:
+  - employeeid -> employees.employeeid
+  - territoryid -> territories.territoryid
+
+orderdetails references:
+  - orderid -> orders.orderid
+  - productid -> products.productid
+
+orders references:
+  - employeeid -> employees.employeeid
+  - customerid -> customers.customerid
+  - shipvia -> shippers.shipperid
+
+products references:
+  - supplierid -> suppliers.supplierid
+  - categoryid -> categories.categoryid
+
+territories references:
+  - regionid -> regions.regionid
+
+================================================================================
+## DETAILED TABLE SCHEMAS
+
+### TABLE: categories
+Rows: 8
+
+Columns:
+  - categoryid: bigint(64) NOT NULL
+
+Primary Key: categoryid
+
+Sample Data:
+  Columns: categoryid, categoryname, description
+  Row 1: (1, 'Beverages', 'Soft drinks, coffees, teas, beers, and ales')
+  Row 2: (2, 'Condiments', 'Sweet and savory sauces, relishes, spreads, and seasonings')
+  Row 3: (3, 'Confections', 'Desserts, candies, and sweet breads')
+
+------------------------------------------------------------
+
+### TABLE: customers
+Rows: 91
+
+Columns:
+  - customerid: text NOT NULL
+
+Primary Key: customerid
+
+Sample Data:
+  Columns: customerid, companyname, contactname, contacttitle, address, city, region, postalcode, country, phone, fax
+  Row 1: ('ALFKI', 'Alfreds Futterkiste', 'Maria Anders', 'Sales Representative', 'Obere Str. 57', 'Berlin', 'Germany', '12209', 'Germany', '030-0074321', '030-0076545')
+  Row 2: ('ANATR', 'Ana Trujillo Emparedados y helados', 'Ana Trujillo', 'Owner', 'Avda. de la Constitución 2222', 'México D.F.', 'Mexico', '5021', 'Mexico', '(5) 555-4729', '(5) 555-3745')
+  Row 3: ('ANTON', 'Antonio Moreno Taquer�\xada', 'Antonio Moreno', 'Owner', 'Mataderos  2312', 'México D.F.', 'Mexico', '5023', 'Mexico', '(5) 555-3932', None)
+
+------------------------------------------------------------
+
+### TABLE: employees
+Rows: 9
+
+Columns:
+  - employeeid: bigint(64) NOT NULL
+
+Primary Key: employeeid
+
+Foreign Keys:
+  - reportsto REFERENCES employees(employeeid)
+
+Sample Data:
+  Columns: employeeid, lastname, firstname, title, titleofcourtesy, birthdate, hiredate, address, city, region, postalcode, country, homephone, extension, notes, reportsto
+  Row 1: (1, 'Davolio', 'Nancy', 'Sales Representative', 'Ms.', datetime.datetime(1948, 12, 8, 0, 0), datetime.datetime(1992, 5, 1, 0, 0), '507 - 20th Ave. E. Apt. 2A', 'Seattle', 'WA', '98122', 'USA', '(206) 555-9857', 5467, 'Education includes a BA in psychology from Colorado State University in 1970.  She also completed "The Art of the Cold Call."  Nancy is a member of Toastmasters International.', 2)
+  Row 2: (2, 'Fuller', 'Andrew', 'Vice President, Sales', 'Dr.', datetime.datetime(1952, 2, 19, 0, 0), datetime.datetime(1992, 8, 14, 0, 0), '908 W. Capital Way', 'Tacoma', 'WA', '98401', 'USA', '(206) 555-9482', 3457, 'Andrew received his BTS commercial in 1974 and a Ph.D. in international marketing from the University of Dallas in 1981.  He is fluent in French and Italian and reads German.  He joined the company as a sales representative, was promoted to sales manager i', None)
+  Row 3: (3, 'Leverling', 'Janet', 'Sales Representative', 'Ms.', datetime.datetime(1963, 8, 30, 0, 0), datetime.datetime(1992, 4, 1, 0, 0), '722 Moss Bay Blvd.', 'Kirkland', 'WA', '98033', 'USA', '(206) 555-3412', 3355, 'Janet has a BS degree in chemistry from Boston College (1984).  She has also completed a certificate program in food retailing management.  Janet was hired as a sales associate in 1991 and promoted to sales representative in February 1992.', 2)
+
+------------------------------------------------------------
+
+### TABLE: employeeterritories
+Rows: 49
+
+Columns:
+  - employeeid: bigint(64) NOT NULL
+
+Primary Key: employeeid, territoryid
+
+Foreign Keys:
+  - employeeid REFERENCES employees(employeeid)
+  - territoryid REFERENCES territories(territoryid)
+
+Sample Data:
+  Columns: employeeid, territoryid
+  Row 1: (1, 6897)
+  Row 2: (1, 19713)
+  Row 3: (2, 1581)
+
+------------------------------------------------------------
+
+### TABLE: orderdetails
+Rows: 2155
+
+Columns:
+  - orderid: bigint(64) NOT NULL
+
+Primary Key: orderid, productid
+
+Foreign Keys:
+  - orderid REFERENCES orders(orderid)
+  - productid REFERENCES products(productid)
+
+Sample Data:
+  Columns: orderid, productid, unitprice, quantity, discount
+  Row 1: (10248, 11, 14.0, 12, 0.0)
+  Row 2: (10248, 42, 9.8, 10, 0.0)
+  Row 3: (10248, 72, 34.8, 5, 0.0)
+
+------------------------------------------------------------
+
+### TABLE: orders
+Rows: 830
+
+Columns:
+  - orderid: bigint(64) NOT NULL
+
+Primary Key: orderid
+
+Foreign Keys:
+  - employeeid REFERENCES employees(employeeid)
+  - customerid REFERENCES customers(customerid)
+  - shipvia REFERENCES shippers(shipperid)
+
+Sample Data:
+  Columns: orderid, customerid, employeeid, orderdate, requireddate, shippeddate, shipvia, freight, shipname, shipaddress, shipcity, shipregion, shippostalcode, shipcountry
+  Row 1: (10248, 'VINET', 5, datetime.datetime(2024, 5, 10, 0, 0), datetime.datetime(2024, 5, 21, 0, 0), datetime.datetime(2024, 5, 10, 0, 0), 3, 32.38, 'Vins et alcools Chevalier', "59 rue de l'Abbaye", 'Reims', 'France', '51100', 'France')
+  Row 2: (10249, 'TOMSP', 6, datetime.datetime(2020, 6, 23, 0, 0), datetime.datetime(2020, 7, 9, 0, 0), datetime.datetime(2020, 6, 28, 0, 0), 1, 11.61, 'Toms Spezialitäten', 'Luisenstr. 48', 'Münster', 'Germany', '44087', 'Germany')
+  Row 3: (10250, 'HANAR', 4, datetime.datetime(2021, 9, 8, 0, 0), datetime.datetime(2021, 9, 16, 0, 0), datetime.datetime(2021, 9, 9, 0, 0), 2, 65.83, 'Hanari Carnes', 'Rua do Paço 67', 'Rio de Janeiro', 'RJ', '05454-876', 'Brazil')
+
+------------------------------------------------------------
+
+### TABLE: products
+Rows: 77
+
+Columns:
+  - productid: bigint(64) NOT NULL
+
+Primary Key: productid
+
+Foreign Keys:
+  - supplierid REFERENCES suppliers(supplierid)
+  - categoryid REFERENCES categories(categoryid)
+
+Sample Data:
+  Columns: productid, productname, supplierid, categoryid, quantityperunit, unitprice, unitsinstock, unitsonorder, reorderlevel, discontinued
+  Row 1: (1, 'Chai', 1, 1, '10 boxes x 20 bags', 18.0, 39, 0, 10, 0)
+  Row 2: (2, 'Chang', 1, 1, '24 - 12 oz bottles', 19.0, 17, 40, 25, 0)
+  Row 3: (3, 'Aniseed Syrup', 1, 2, '12 - 550 ml bottles', 10.0, 13, 70, 25, 0)
+
+------------------------------------------------------------
+
+### TABLE: regions
+Rows: 4
+
+Columns:
+  - regionid: bigint(64) NOT NULL
+
+Primary Key: regionid
+
+Sample Data:
+  Columns: regionid, regiondescription
+  Row 1: (1, 'Eastern')
+  Row 2: (2, 'Western')
+  Row 3: (3, 'Northern')
+
+------------------------------------------------------------
+
+### TABLE: shippers
+Rows: 3
+
+Columns:
+  - shipperid: bigint(64) NOT NULL
+
+Primary Key: shipperid
+
+Sample Data:
+  Columns: shipperid, companyname, phone
+  Row 1: (1, 'Speedy Express', '(503) 555-9831')
+  Row 2: (2, 'United Package', '(503) 555-3199')
+  Row 3: (3, 'Federal Shipping', '(503) 555-9931')
+
+------------------------------------------------------------
+
+### TABLE: suppliers
+Rows: 29
+
+Columns:
+  - supplierid: bigint(64) NOT NULL
+
+Primary Key: supplierid
+
+Sample Data:
+  Columns: supplierid, companyname, contactname, contacttitle, address, city, region, postalcode, country, phone, fax
+  Row 1: (1, 'Exotic Liquids', 'Charlotte Cooper', 'Purchasing Manager', '49 Gilbert St.', 'London', 'UK', 'EC1 4SD', 'UK', '(171) 555-2222', None)
+  Row 2: (2, 'New Orleans Cajun Delights', 'Shelley Burke', 'Order Administrator', 'P.O. Box 78934', 'New Orleans', 'LA', '70117', 'USA', '(100) 555-4822', None)
+  Row 3: (3, "Grandma Kelly's Homestead", 'Regina Murphy', 'Sales Representative', '707 Oxford Rd.', 'Ann Arbor', 'MI', '48104', 'USA', '(313) 555-5735', '(313) 555-3349')
+
+------------------------------------------------------------
+
+### TABLE: territories
+Rows: 53
+
+Columns:
+  - territoryid: bigint(64) NOT NULL
+
+Primary Key: territoryid
+
+Foreign Keys:
+  - regionid REFERENCES regions(regionid)
+
+Sample Data:
+  Columns: territoryid, territorydescription, regionid
+  Row 1: (1581, 'Westboro', 1)
+  Row 2: (1730, 'Bedford', 1)
+  Row 3: (1833, 'Georgetow', 1)
+
+------------------------------------------------------------
+
+## BUSINESS CONTEXT
+This appears to be a Northwind-style business database with the following key entities:
+- Customers: Companies that place orders
+- Products: Items sold, organized by categories and supplied by suppliers
+- Orders: Customer purchases handled by employees
+- OrderDetails: Line items for each order
+- Employees: Staff who process orders and manage territories
+- Suppliers: Companies that provide products
+- Categories: Product groupings
+- Territories/Regions: Geographic sales areas
+- Shippers: Companies that deliver orders
+
+## COMMON QUERY PATTERNS
+- Sales analysis: JOIN orders, orderdetails, products, categories
+- Customer analysis: JOIN customers, orders, orderdetails
+- Product performance: JOIN products, orderdetails, categories
+- Employee performance: JOIN employees, orders, territories
+- Supplier analysis: JOIN suppliers, products, orderdetails

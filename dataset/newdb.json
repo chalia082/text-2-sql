@@ -1,0 +1,1395 @@
+{
+  "database_info": {
+    "extracted_at": "2025-06-16T15:46:25.618588",
+    "database_name": "better_data",
+    "total_tables": 11
+  },
+  "tables": {
+    "categories": {
+      "columns": [
+        {
+          "name": "categoryID",
+          "type": "bigint(64)",
+          "nullable": false,
+          "default": null,
+          "position": 1
+        },
+        {
+          "name": "categoryName",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 2
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 3
+        }
+      ],
+      "primary_keys": [
+        {
+          "column": "categoryID",
+          "constraint_name": "pk_categories"
+        }
+      ],
+      "foreign_keys": [],
+      "indexes": [
+        {
+          "name": "pk_categories",
+          "definition": "CREATE UNIQUE INDEX pk_categories ON public.categories USING btree (\"categoryID\")"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "2200_16737_1_not_null",
+          "definition": "categoryID IS NOT NULL"
+        }
+      ],
+      "description": {
+        "row_count": 8,
+        "sample_data": [
+          [
+            1,
+            "Beverages",
+            "Soft drinks, coffees, teas, beers, and ales"
+          ],
+          [
+            2,
+            "Condiments",
+            "Sweet and savory sauces, relishes, spreads, and seasonings"
+          ],
+          [
+            3,
+            "Confections",
+            "Desserts, candies, and sweet breads"
+          ]
+        ],
+        "column_names": [
+          "categoryID",
+          "categoryName",
+          "description"
+        ]
+      }
+    },
+    "customers": {
+      "columns": [
+        {
+          "name": "customerID",
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "position": 1
+        },
+        {
+          "name": "companyName",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 2
+        },
+        {
+          "name": "contactName",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 3
+        },
+        {
+          "name": "contactTitle",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 4
+        },
+        {
+          "name": "address",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 5
+        },
+        {
+          "name": "city",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 6
+        },
+        {
+          "name": "region",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 7
+        },
+        {
+          "name": "postalCode",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 8
+        },
+        {
+          "name": "country",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 9
+        },
+        {
+          "name": "phone",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 10
+        },
+        {
+          "name": "fax",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 11
+        }
+      ],
+      "primary_keys": [
+        {
+          "column": "customerID",
+          "constraint_name": "pk_customers"
+        }
+      ],
+      "foreign_keys": [],
+      "indexes": [
+        {
+          "name": "pk_customers",
+          "definition": "CREATE UNIQUE INDEX pk_customers ON public.customers USING btree (\"customerID\")"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "2200_16742_1_not_null",
+          "definition": "customerID IS NOT NULL"
+        }
+      ],
+      "description": {
+        "row_count": 91,
+        "sample_data": [
+          [
+            "ALFKI",
+            "Alfreds Futterkiste",
+            "Maria Anders",
+            "Sales Representative",
+            "Obere Str. 57",
+            "Berlin",
+            "Germany",
+            "12209",
+            "Germany",
+            "030-0074321",
+            "030-0076545"
+          ],
+          [
+            "ANATR",
+            "Ana Trujillo Emparedados y helados",
+            "Ana Trujillo",
+            "Owner",
+            "Avda. de la Constituci\u00c3\u00b3n 2222",
+            "M\u00c3\u00a9xico D.F.",
+            "Mexico",
+            "5021",
+            "Mexico",
+            "(5) 555-4729",
+            "(5) 555-3745"
+          ],
+          [
+            "ANTON",
+            "Antonio Moreno Taquer\u00c3\u00ada",
+            "Antonio Moreno",
+            "Owner",
+            "Mataderos  2312",
+            "M\u00c3\u00a9xico D.F.",
+            "Mexico",
+            "5023",
+            "Mexico",
+            "(5) 555-3932",
+            null
+          ]
+        ],
+        "column_names": [
+          "customerID",
+          "companyName",
+          "contactName",
+          "contactTitle",
+          "address",
+          "city",
+          "region",
+          "postalCode",
+          "country",
+          "phone",
+          "fax"
+        ]
+      }
+    },
+    "employees": {
+      "columns": [
+        {
+          "name": "employeeID",
+          "type": "bigint(64)",
+          "nullable": false,
+          "default": null,
+          "position": 1
+        },
+        {
+          "name": "lastName",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 2
+        },
+        {
+          "name": "firstName",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 3
+        },
+        {
+          "name": "title",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 4
+        },
+        {
+          "name": "titleOfCourtesy",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 5
+        },
+        {
+          "name": "birthDate",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 6
+        },
+        {
+          "name": "hireDate",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 7
+        },
+        {
+          "name": "address",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 8
+        },
+        {
+          "name": "city",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 9
+        },
+        {
+          "name": "region",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 10
+        },
+        {
+          "name": "postalCode",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 11
+        },
+        {
+          "name": "country",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 12
+        },
+        {
+          "name": "homePhone",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 13
+        },
+        {
+          "name": "extension",
+          "type": "bigint(64)",
+          "nullable": true,
+          "default": null,
+          "position": 14
+        },
+        {
+          "name": "notes",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 15
+        },
+        {
+          "name": "reportsTo",
+          "type": "bigint(64)",
+          "nullable": true,
+          "default": null,
+          "position": 16
+        }
+      ],
+      "primary_keys": [
+        {
+          "column": "employeeID",
+          "constraint_name": "pk_employees"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "source_column": "reportsTo",
+          "target_table": "employees",
+          "target_column": "employeeID",
+          "constraint_name": "fk_employees_manager",
+          "delete_rule": "NO ACTION",
+          "update_rule": "NO ACTION"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "pk_employees",
+          "definition": "CREATE UNIQUE INDEX pk_employees ON public.employees USING btree (\"employeeID\")"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "2200_16750_1_not_null",
+          "definition": "employeeID IS NOT NULL"
+        }
+      ],
+      "description": {
+        "row_count": 9,
+        "sample_data": [
+          [
+            1,
+            "Davolio",
+            "Nancy",
+            "Sales Representative",
+            "Ms.",
+            "12/8/1948",
+            "5/1/1992",
+            "507 - 20th Ave. E. Apt. 2A",
+            "Seattle",
+            "WA",
+            "98122",
+            "USA",
+            "(206) 555-9857",
+            5467,
+            "Education includes a BA in psychology from Colorado State University in 1970.  She also completed \"The Art of the Cold Call.\"  Nancy is a member of Toastmasters International.",
+            2
+          ],
+          [
+            2,
+            "Fuller",
+            "Andrew",
+            "Vice President, Sales",
+            "Dr.",
+            "2/19/1952",
+            "8/14/1992",
+            "908 W. Capital Way",
+            "Tacoma",
+            "WA",
+            "98401",
+            "USA",
+            "(206) 555-9482",
+            3457,
+            "Andrew received his BTS commercial in 1974 and a Ph.D. in international marketing from the University of Dallas in 1981.  He is fluent in French and Italian and reads German.  He joined the company as a sales representative, was promoted to sales manager i",
+            null
+          ],
+          [
+            3,
+            "Leverling",
+            "Janet",
+            "Sales Representative",
+            "Ms.",
+            "8/30/1963",
+            "4/1/1992",
+            "722 Moss Bay Blvd.",
+            "Kirkland",
+            "WA",
+            "98033",
+            "USA",
+            "(206) 555-3412",
+            3355,
+            "Janet has a BS degree in chemistry from Boston College (1984).  She has also completed a certificate program in food retailing management.  Janet was hired as a sales associate in 1991 and promoted to sales representative in February 1992.",
+            2
+          ]
+        ],
+        "column_names": [
+          "employeeID",
+          "lastName",
+          "firstName",
+          "title",
+          "titleOfCourtesy",
+          "birthDate",
+          "hireDate",
+          "address",
+          "city",
+          "region",
+          "postalCode",
+          "country",
+          "homePhone",
+          "extension",
+          "notes",
+          "reportsTo"
+        ]
+      }
+    },
+    "employeeterritories": {
+      "columns": [
+        {
+          "name": "employeeID",
+          "type": "bigint(64)",
+          "nullable": false,
+          "default": null,
+          "position": 1
+        },
+        {
+          "name": "territoryID",
+          "type": "bigint(64)",
+          "nullable": false,
+          "default": null,
+          "position": 2
+        }
+      ],
+      "primary_keys": [
+        {
+          "column": "employeeID",
+          "constraint_name": "pk_employee_territories"
+        },
+        {
+          "column": "territoryID",
+          "constraint_name": "pk_employee_territories"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "source_column": "employeeID",
+          "target_table": "employees",
+          "target_column": "employeeID",
+          "constraint_name": "fk_employee_territories_employee",
+          "delete_rule": "CASCADE",
+          "update_rule": "NO ACTION"
+        },
+        {
+          "source_column": "territoryID",
+          "target_table": "territories",
+          "target_column": "territoryID",
+          "constraint_name": "fk_employee_territories_territory",
+          "delete_rule": "CASCADE",
+          "update_rule": "NO ACTION"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "pk_employee_territories",
+          "definition": "CREATE UNIQUE INDEX pk_employee_territories ON public.employeeterritories USING btree (\"employeeID\", \"territoryID\")"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "2200_16747_1_not_null",
+          "definition": "employeeID IS NOT NULL"
+        },
+        {
+          "name": "2200_16747_2_not_null",
+          "definition": "territoryID IS NOT NULL"
+        }
+      ],
+      "description": {
+        "row_count": 49,
+        "sample_data": [
+          [
+            1,
+            6897
+          ],
+          [
+            1,
+            19713
+          ],
+          [
+            2,
+            1581
+          ]
+        ],
+        "column_names": [
+          "employeeID",
+          "territoryID"
+        ]
+      }
+    },
+    "orderdetails": {
+      "columns": [
+        {
+          "name": "orderID",
+          "type": "bigint(64)",
+          "nullable": false,
+          "default": null,
+          "position": 1
+        },
+        {
+          "name": "productID",
+          "type": "bigint(64)",
+          "nullable": false,
+          "default": null,
+          "position": 2
+        },
+        {
+          "name": "unitPrice",
+          "type": "double precision(53)",
+          "nullable": true,
+          "default": null,
+          "position": 3
+        },
+        {
+          "name": "quantity",
+          "type": "bigint(64)",
+          "nullable": true,
+          "default": null,
+          "position": 4
+        },
+        {
+          "name": "discount",
+          "type": "double precision(53)",
+          "nullable": true,
+          "default": null,
+          "position": 5
+        }
+      ],
+      "primary_keys": [
+        {
+          "column": "orderID",
+          "constraint_name": "pk_order_details"
+        },
+        {
+          "column": "productID",
+          "constraint_name": "pk_order_details"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "source_column": "orderID",
+          "target_table": "orders",
+          "target_column": "orderID",
+          "constraint_name": "fk_order_details_order",
+          "delete_rule": "CASCADE",
+          "update_rule": "NO ACTION"
+        },
+        {
+          "source_column": "productID",
+          "target_table": "products",
+          "target_column": "productID",
+          "constraint_name": "fk_order_details_product",
+          "delete_rule": "NO ACTION",
+          "update_rule": "NO ACTION"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "pk_order_details",
+          "definition": "CREATE UNIQUE INDEX pk_order_details ON public.orderdetails USING btree (\"orderID\", \"productID\")"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "2200_16755_1_not_null",
+          "definition": "orderID IS NOT NULL"
+        },
+        {
+          "name": "2200_16755_2_not_null",
+          "definition": "productID IS NOT NULL"
+        }
+      ],
+      "description": {
+        "row_count": 2155,
+        "sample_data": [
+          [
+            10248,
+            11,
+            14.0,
+            12,
+            0.0
+          ],
+          [
+            10248,
+            42,
+            9.8,
+            10,
+            0.0
+          ],
+          [
+            10248,
+            72,
+            34.8,
+            5,
+            0.0
+          ]
+        ],
+        "column_names": [
+          "orderID",
+          "productID",
+          "unitPrice",
+          "quantity",
+          "discount"
+        ]
+      }
+    },
+    "orders": {
+      "columns": [
+        {
+          "name": "orderID",
+          "type": "bigint(64)",
+          "nullable": false,
+          "default": null,
+          "position": 1
+        },
+        {
+          "name": "customerID",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 2
+        },
+        {
+          "name": "employeeID",
+          "type": "bigint(64)",
+          "nullable": true,
+          "default": null,
+          "position": 3
+        },
+        {
+          "name": "orderDate",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 4
+        },
+        {
+          "name": "requiredDate",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 5
+        },
+        {
+          "name": "shippedDate",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 6
+        },
+        {
+          "name": "shipVia",
+          "type": "bigint(64)",
+          "nullable": true,
+          "default": null,
+          "position": 7
+        },
+        {
+          "name": "freight",
+          "type": "double precision(53)",
+          "nullable": true,
+          "default": null,
+          "position": 8
+        },
+        {
+          "name": "shipName",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 9
+        },
+        {
+          "name": "shipAddress",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 10
+        },
+        {
+          "name": "shipCity",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 11
+        },
+        {
+          "name": "shipRegion",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 12
+        },
+        {
+          "name": "shipPostalCode",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 13
+        },
+        {
+          "name": "shipCountry",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 14
+        }
+      ],
+      "primary_keys": [
+        {
+          "column": "orderID",
+          "constraint_name": "pk_orders"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "source_column": "employeeID",
+          "target_table": "employees",
+          "target_column": "employeeID",
+          "constraint_name": "fk_orders_employee",
+          "delete_rule": "NO ACTION",
+          "update_rule": "NO ACTION"
+        },
+        {
+          "source_column": "customerID",
+          "target_table": "customers",
+          "target_column": "customerID",
+          "constraint_name": "fk_orders_customer",
+          "delete_rule": "NO ACTION",
+          "update_rule": "NO ACTION"
+        },
+        {
+          "source_column": "shipVia",
+          "target_table": "shippers",
+          "target_column": "shipperID",
+          "constraint_name": "fk_orders_shipper",
+          "delete_rule": "NO ACTION",
+          "update_rule": "NO ACTION"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "pk_orders",
+          "definition": "CREATE UNIQUE INDEX pk_orders ON public.orders USING btree (\"orderID\")"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "2200_16758_1_not_null",
+          "definition": "orderID IS NOT NULL"
+        }
+      ],
+      "description": {
+        "row_count": 830,
+        "sample_data": [
+          [
+            10248,
+            "VINET",
+            5,
+            "5/10/2024",
+            "5/21/2024",
+            "5/10/2024",
+            3,
+            32.38,
+            "Vins et alcools Chevalier",
+            "59 rue de l'Abbaye",
+            "Reims",
+            "France",
+            "51100",
+            "France"
+          ],
+          [
+            10249,
+            "TOMSP",
+            6,
+            "6/23/2020",
+            "7/9/2020",
+            "6/28/2020",
+            1,
+            11.61,
+            "Toms Spezialit\u00c3\u00a4ten",
+            "Luisenstr. 48",
+            "M\u00c3\u00bcnster",
+            "Germany",
+            "44087",
+            "Germany"
+          ],
+          [
+            10250,
+            "HANAR",
+            4,
+            "9/8/2021",
+            "9/16/2021",
+            "9/9/2021",
+            2,
+            65.83,
+            "Hanari Carnes",
+            "Rua do Pa\u00c3\u00a7o 67",
+            "Rio de Janeiro",
+            "RJ",
+            "05454-876",
+            "Brazil"
+          ]
+        ],
+        "column_names": [
+          "orderID",
+          "customerID",
+          "employeeID",
+          "orderDate",
+          "requiredDate",
+          "shippedDate",
+          "shipVia",
+          "freight",
+          "shipName",
+          "shipAddress",
+          "shipCity",
+          "shipRegion",
+          "shipPostalCode",
+          "shipCountry"
+        ]
+      }
+    },
+    "products": {
+      "columns": [
+        {
+          "name": "productID",
+          "type": "bigint(64)",
+          "nullable": false,
+          "default": null,
+          "position": 1
+        },
+        {
+          "name": "productName",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 2
+        },
+        {
+          "name": "supplierID",
+          "type": "bigint(64)",
+          "nullable": true,
+          "default": null,
+          "position": 3
+        },
+        {
+          "name": "categoryID",
+          "type": "bigint(64)",
+          "nullable": true,
+          "default": null,
+          "position": 4
+        },
+        {
+          "name": "quantityPerUnit",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 5
+        },
+        {
+          "name": "unitPrice",
+          "type": "double precision(53)",
+          "nullable": true,
+          "default": null,
+          "position": 6
+        },
+        {
+          "name": "unitsInStock",
+          "type": "bigint(64)",
+          "nullable": true,
+          "default": null,
+          "position": 7
+        },
+        {
+          "name": "unitsOnOrder",
+          "type": "bigint(64)",
+          "nullable": true,
+          "default": null,
+          "position": 8
+        },
+        {
+          "name": "reorderLevel",
+          "type": "bigint(64)",
+          "nullable": true,
+          "default": null,
+          "position": 9
+        },
+        {
+          "name": "discontinued",
+          "type": "bigint(64)",
+          "nullable": true,
+          "default": null,
+          "position": 10
+        }
+      ],
+      "primary_keys": [
+        {
+          "column": "productID",
+          "constraint_name": "pk_products"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "source_column": "supplierID",
+          "target_table": "suppliers",
+          "target_column": "supplierID",
+          "constraint_name": "fk_products_supplier",
+          "delete_rule": "NO ACTION",
+          "update_rule": "NO ACTION"
+        },
+        {
+          "source_column": "categoryID",
+          "target_table": "categories",
+          "target_column": "categoryID",
+          "constraint_name": "fk_products_category",
+          "delete_rule": "NO ACTION",
+          "update_rule": "NO ACTION"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "pk_products",
+          "definition": "CREATE UNIQUE INDEX pk_products ON public.products USING btree (\"productID\")"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "2200_16763_1_not_null",
+          "definition": "productID IS NOT NULL"
+        }
+      ],
+      "description": {
+        "row_count": 77,
+        "sample_data": [
+          [
+            1,
+            "Chai",
+            1,
+            1,
+            "10 boxes x 20 bags",
+            18.0,
+            39,
+            0,
+            10,
+            0
+          ],
+          [
+            2,
+            "Chang",
+            1,
+            1,
+            "24 - 12 oz bottles",
+            19.0,
+            17,
+            40,
+            25,
+            0
+          ],
+          [
+            3,
+            "Aniseed Syrup",
+            1,
+            2,
+            "12 - 550 ml bottles",
+            10.0,
+            13,
+            70,
+            25,
+            0
+          ]
+        ],
+        "column_names": [
+          "productID",
+          "productName",
+          "supplierID",
+          "categoryID",
+          "quantityPerUnit",
+          "unitPrice",
+          "unitsInStock",
+          "unitsOnOrder",
+          "reorderLevel",
+          "discontinued"
+        ]
+      }
+    },
+    "regions": {
+      "columns": [
+        {
+          "name": "regionID",
+          "type": "bigint(64)",
+          "nullable": false,
+          "default": null,
+          "position": 1
+        },
+        {
+          "name": "regionDescription",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 2
+        }
+      ],
+      "primary_keys": [
+        {
+          "column": "regionID",
+          "constraint_name": "pk_regions"
+        }
+      ],
+      "foreign_keys": [],
+      "indexes": [
+        {
+          "name": "pk_regions",
+          "definition": "CREATE UNIQUE INDEX pk_regions ON public.regions USING btree (\"regionID\")"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "2200_16768_1_not_null",
+          "definition": "regionID IS NOT NULL"
+        }
+      ],
+      "description": {
+        "row_count": 4,
+        "sample_data": [
+          [
+            1,
+            "Eastern"
+          ],
+          [
+            2,
+            "Western"
+          ],
+          [
+            3,
+            "Northern"
+          ]
+        ],
+        "column_names": [
+          "regionID",
+          "regionDescription"
+        ]
+      }
+    },
+    "shippers": {
+      "columns": [
+        {
+          "name": "shipperID",
+          "type": "bigint(64)",
+          "nullable": false,
+          "default": null,
+          "position": 1
+        },
+        {
+          "name": "companyName",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 2
+        },
+        {
+          "name": "phone",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 3
+        }
+      ],
+      "primary_keys": [
+        {
+          "column": "shipperID",
+          "constraint_name": "pk_shippers"
+        }
+      ],
+      "foreign_keys": [],
+      "indexes": [
+        {
+          "name": "pk_shippers",
+          "definition": "CREATE UNIQUE INDEX pk_shippers ON public.shippers USING btree (\"shipperID\")"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "2200_16773_1_not_null",
+          "definition": "shipperID IS NOT NULL"
+        }
+      ],
+      "description": {
+        "row_count": 3,
+        "sample_data": [
+          [
+            1,
+            "Speedy Express",
+            "(503) 555-9831"
+          ],
+          [
+            2,
+            "United Package",
+            "(503) 555-3199"
+          ],
+          [
+            3,
+            "Federal Shipping",
+            "(503) 555-9931"
+          ]
+        ],
+        "column_names": [
+          "shipperID",
+          "companyName",
+          "phone"
+        ]
+      }
+    },
+    "suppliers": {
+      "columns": [
+        {
+          "name": "supplierID",
+          "type": "bigint(64)",
+          "nullable": false,
+          "default": null,
+          "position": 1
+        },
+        {
+          "name": "companyName",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 2
+        },
+        {
+          "name": "contactName",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 3
+        },
+        {
+          "name": "contactTitle",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 4
+        },
+        {
+          "name": "address",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 5
+        },
+        {
+          "name": "city",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 6
+        },
+        {
+          "name": "region",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 7
+        },
+        {
+          "name": "postalCode",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 8
+        },
+        {
+          "name": "country",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 9
+        },
+        {
+          "name": "phone",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 10
+        },
+        {
+          "name": "fax",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 11
+        }
+      ],
+      "primary_keys": [
+        {
+          "column": "supplierID",
+          "constraint_name": "pk_suppliers"
+        }
+      ],
+      "foreign_keys": [],
+      "indexes": [
+        {
+          "name": "pk_suppliers",
+          "definition": "CREATE UNIQUE INDEX pk_suppliers ON public.suppliers USING btree (\"supplierID\")"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "2200_16778_1_not_null",
+          "definition": "supplierID IS NOT NULL"
+        }
+      ],
+      "description": {
+        "row_count": 29,
+        "sample_data": [
+          [
+            1,
+            "Exotic Liquids",
+            "Charlotte Cooper",
+            "Purchasing Manager",
+            "49 Gilbert St.",
+            "London",
+            "UK",
+            "EC1 4SD",
+            "UK",
+            "(171) 555-2222",
+            null
+          ],
+          [
+            2,
+            "New Orleans Cajun Delights",
+            "Shelley Burke",
+            "Order Administrator",
+            "P.O. Box 78934",
+            "New Orleans",
+            "LA",
+            "70117",
+            "USA",
+            "(100) 555-4822",
+            null
+          ],
+          [
+            3,
+            "Grandma Kelly's Homestead",
+            "Regina Murphy",
+            "Sales Representative",
+            "707 Oxford Rd.",
+            "Ann Arbor",
+            "MI",
+            "48104",
+            "USA",
+            "(313) 555-5735",
+            "(313) 555-3349"
+          ]
+        ],
+        "column_names": [
+          "supplierID",
+          "companyName",
+          "contactName",
+          "contactTitle",
+          "address",
+          "city",
+          "region",
+          "postalCode",
+          "country",
+          "phone",
+          "fax"
+        ]
+      }
+    },
+    "territories": {
+      "columns": [
+        {
+          "name": "territoryID",
+          "type": "bigint(64)",
+          "nullable": false,
+          "default": null,
+          "position": 1
+        },
+        {
+          "name": "territoryDescription",
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "position": 2
+        },
+        {
+          "name": "regionID",
+          "type": "bigint(64)",
+          "nullable": true,
+          "default": null,
+          "position": 3
+        }
+      ],
+      "primary_keys": [
+        {
+          "column": "territoryID",
+          "constraint_name": "pk_territories"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "source_column": "regionID",
+          "target_table": "regions",
+          "target_column": "regionID",
+          "constraint_name": "fk_territories_region",
+          "delete_rule": "NO ACTION",
+          "update_rule": "NO ACTION"
+        }
+      ],
+      "indexes": [
+        {
+          "name": "pk_territories",
+          "definition": "CREATE UNIQUE INDEX pk_territories ON public.territories USING btree (\"territoryID\")"
+        }
+      ],
+      "constraints": [
+        {
+          "name": "2200_16783_1_not_null",
+          "definition": "territoryID IS NOT NULL"
+        }
+      ],
+      "description": {
+        "row_count": 53,
+        "sample_data": [
+          [
+            1581,
+            "Westboro",
+            1
+          ],
+          [
+            1730,
+            "Bedford",
+            1
+          ],
+          [
+            1833,
+            "Georgetow",
+            1
+          ]
+        ],
+        "column_names": [
+          "territoryID",
+          "territoryDescription",
+          "regionID"
+        ]
+      }
+    }
+  }
+}

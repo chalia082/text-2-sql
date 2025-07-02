@@ -1,0 +1,321 @@
+# DATABASE SCHEMA INFORMATION
+# This file contains complete schema information for text-to-SQL generation
+
+Database: better_data
+Total Tables: 11
+Extracted: 2025-06-16T15:46:25.618588
+
+## TABLE RELATIONSHIPS OVERVIEW
+
+employees references:
+  - reportsTo -> employees.employeeID
+
+employeeterritories references:
+  - employeeID -> employees.employeeID
+  - territoryID -> territories.territoryID
+
+orderdetails references:
+  - orderID -> orders.orderID
+  - productID -> products.productID
+
+orders references:
+  - employeeID -> employees.employeeID
+  - customerID -> customers.customerID
+  - shipVia -> shippers.shipperID
+
+products references:
+  - supplierID -> suppliers.supplierID
+  - categoryID -> categories.categoryID
+
+territories references:
+  - regionID -> regions.regionID
+
+================================================================================
+## DETAILED TABLE SCHEMAS
+
+### TABLE: categories
+Rows: 8
+
+Columns:
+  - categoryID: bigint(64) NOT NULL
+  - categoryName: text NULL
+  - description: text NULL
+
+Primary Key: categoryID
+
+Sample Data:
+  Columns: categoryID, categoryName, description
+  Row 1: (1, 'Beverages', 'Soft drinks, coffees, teas, beers, and ales')
+  Row 2: (2, 'Condiments', 'Sweet and savory sauces, relishes, spreads, and seasonings')
+  Row 3: (3, 'Confections', 'Desserts, candies, and sweet breads')
+
+------------------------------------------------------------
+
+### TABLE: customers
+Rows: 91
+
+Columns:
+  - customerID: text NOT NULL
+  - companyName: text NULL
+  - contactName: text NULL
+  - contactTitle: text NULL
+  - address: text NULL
+  - city: text NULL
+  - region: text NULL
+  - postalCode: text NULL
+  - country: text NULL
+  - phone: text NULL
+  - fax: text NULL
+
+Primary Key: customerID
+
+Sample Data:
+  Columns: customerID, companyName, contactName, contactTitle, address, city, region, postalCode, country, phone, fax
+  Row 1: ('ALFKI', 'Alfreds Futterkiste', 'Maria Anders', 'Sales Representative', 'Obere Str. 57', 'Berlin', 'Germany', '12209', 'Germany', '030-0074321', '030-0076545')
+  Row 2: ('ANATR', 'Ana Trujillo Emparedados y helados', 'Ana Trujillo', 'Owner', 'Avda. de la Constitución 2222', 'México D.F.', 'Mexico', '5021', 'Mexico', '(5) 555-4729', '(5) 555-3745')
+  Row 3: ('ANTON', 'Antonio Moreno Taquer�\xada', 'Antonio Moreno', 'Owner', 'Mataderos  2312', 'México D.F.', 'Mexico', '5023', 'Mexico', '(5) 555-3932', None)
+
+------------------------------------------------------------
+
+### TABLE: employees
+Rows: 9
+
+Columns:
+  - employeeID: bigint(64) NOT NULL
+  - lastName: text NULL
+  - firstName: text NULL
+  - title: text NULL
+  - titleOfCourtesy: text NULL
+  - birthDate: text NULL
+  - hireDate: text NULL
+  - address: text NULL
+  - city: text NULL
+  - region: text NULL
+  - postalCode: text NULL
+  - country: text NULL
+  - homePhone: text NULL
+  - extension: bigint(64) NULL
+  - notes: text NULL
+  - reportsTo: bigint(64) NULL
+
+Primary Key: employeeID
+
+Foreign Keys:
+  - reportsTo REFERENCES employees(employeeID)
+
+Sample Data:
+  Columns: employeeID, lastName, firstName, title, titleOfCourtesy, birthDate, hireDate, address, city, region, postalCode, country, homePhone, extension, notes, reportsTo
+  Row 1: (1, 'Davolio', 'Nancy', 'Sales Representative', 'Ms.', '12/8/1948', '5/1/1992', '507 - 20th Ave. E. Apt. 2A', 'Seattle', 'WA', '98122', 'USA', '(206) 555-9857', 5467, 'Education includes a BA in psychology from Colorado State University in 1970.  She also completed "The Art of the Cold Call."  Nancy is a member of Toastmasters International.', 2)
+  Row 2: (2, 'Fuller', 'Andrew', 'Vice President, Sales', 'Dr.', '2/19/1952', '8/14/1992', '908 W. Capital Way', 'Tacoma', 'WA', '98401', 'USA', '(206) 555-9482', 3457, 'Andrew received his BTS commercial in 1974 and a Ph.D. in international marketing from the University of Dallas in 1981.  He is fluent in French and Italian and reads German.  He joined the company as a sales representative, was promoted to sales manager i', None)
+  Row 3: (3, 'Leverling', 'Janet', 'Sales Representative', 'Ms.', '8/30/1963', '4/1/1992', '722 Moss Bay Blvd.', 'Kirkland', 'WA', '98033', 'USA', '(206) 555-3412', 3355, 'Janet has a BS degree in chemistry from Boston College (1984).  She has also completed a certificate program in food retailing management.  Janet was hired as a sales associate in 1991 and promoted to sales representative in February 1992.', 2)
+
+------------------------------------------------------------
+
+### TABLE: employeeterritories
+Rows: 49
+
+Columns:
+  - employeeID: bigint(64) NOT NULL
+  - territoryID: bigint(64) NOT NULL
+
+Primary Key: employeeID, territoryID
+
+Foreign Keys:
+  - employeeID REFERENCES employees(employeeID)
+  - territoryID REFERENCES territories(territoryID)
+
+Sample Data:
+  Columns: employeeID, territoryID
+  Row 1: (1, 6897)
+  Row 2: (1, 19713)
+  Row 3: (2, 1581)
+
+------------------------------------------------------------
+
+### TABLE: orderdetails
+Rows: 2155
+
+Columns:
+  - orderID: bigint(64) NOT NULL
+  - productID: bigint(64) NOT NULL
+  - unitPrice: double precision(53) NULL
+  - quantity: bigint(64) NULL
+  - discount: double precision(53) NULL
+
+Primary Key: orderID, productID
+
+Foreign Keys:
+  - orderID REFERENCES orders(orderID)
+  - productID REFERENCES products(productID)
+
+Sample Data:
+  Columns: orderID, productID, unitPrice, quantity, discount
+  Row 1: (10248, 11, 14.0, 12, 0.0)
+  Row 2: (10248, 42, 9.8, 10, 0.0)
+  Row 3: (10248, 72, 34.8, 5, 0.0)
+
+------------------------------------------------------------
+
+### TABLE: orders
+Rows: 830
+
+Columns:
+  - orderID: bigint(64) NOT NULL
+  - customerID: text NULL
+  - employeeID: bigint(64) NULL
+  - orderDate: text NULL
+  - requiredDate: text NULL
+  - shippedDate: text NULL
+  - shipVia: bigint(64) NULL
+  - freight: double precision(53) NULL
+  - shipName: text NULL
+  - shipAddress: text NULL
+  - shipCity: text NULL
+  - shipRegion: text NULL
+  - shipPostalCode: text NULL
+  - shipCountry: text NULL
+
+Primary Key: orderID
+
+Foreign Keys:
+  - employeeID REFERENCES employees(employeeID)
+  - customerID REFERENCES customers(customerID)
+  - shipVia REFERENCES shippers(shipperID)
+
+Sample Data:
+  Columns: orderID, customerID, employeeID, orderDate, requiredDate, shippedDate, shipVia, freight, shipName, shipAddress, shipCity, shipRegion, shipPostalCode, shipCountry
+  Row 1: (10248, 'VINET', 5, '5/10/2024', '5/21/2024', '5/10/2024', 3, 32.38, 'Vins et alcools Chevalier', "59 rue de l'Abbaye", 'Reims', 'France', '51100', 'France')
+  Row 2: (10249, 'TOMSP', 6, '6/23/2020', '7/9/2020', '6/28/2020', 1, 11.61, 'Toms Spezialitäten', 'Luisenstr. 48', 'Münster', 'Germany', '44087', 'Germany')
+  Row 3: (10250, 'HANAR', 4, '9/8/2021', '9/16/2021', '9/9/2021', 2, 65.83, 'Hanari Carnes', 'Rua do Paço 67', 'Rio de Janeiro', 'RJ', '05454-876', 'Brazil')
+
+------------------------------------------------------------
+
+### TABLE: products
+Rows: 77
+
+Columns:
+  - productID: bigint(64) NOT NULL
+  - productName: text NULL
+  - supplierID: bigint(64) NULL
+  - categoryID: bigint(64) NULL
+  - quantityPerUnit: text NULL
+  - unitPrice: double precision(53) NULL
+  - unitsInStock: bigint(64) NULL
+  - unitsOnOrder: bigint(64) NULL
+  - reorderLevel: bigint(64) NULL
+  - discontinued: bigint(64) NULL
+
+Primary Key: productID
+
+Foreign Keys:
+  - supplierID REFERENCES suppliers(supplierID)
+  - categoryID REFERENCES categories(categoryID)
+
+Sample Data:
+  Columns: productID, productName, supplierID, categoryID, quantityPerUnit, unitPrice, unitsInStock, unitsOnOrder, reorderLevel, discontinued
+  Row 1: (1, 'Chai', 1, 1, '10 boxes x 20 bags', 18.0, 39, 0, 10, 0)
+  Row 2: (2, 'Chang', 1, 1, '24 - 12 oz bottles', 19.0, 17, 40, 25, 0)
+  Row 3: (3, 'Aniseed Syrup', 1, 2, '12 - 550 ml bottles', 10.0, 13, 70, 25, 0)
+
+------------------------------------------------------------
+
+### TABLE: regions
+Rows: 4
+
+Columns:
+  - regionID: bigint(64) NOT NULL
+  - regionDescription: text NULL
+
+Primary Key: regionID
+
+Sample Data:
+  Columns: regionID, regionDescription
+  Row 1: (1, 'Eastern')
+  Row 2: (2, 'Western')
+  Row 3: (3, 'Northern')
+
+------------------------------------------------------------
+
+### TABLE: shippers
+Rows: 3
+
+Columns:
+  - shipperID: bigint(64) NOT NULL
+  - companyName: text NULL
+  - phone: text NULL
+
+Primary Key: shipperID
+
+Sample Data:
+  Columns: shipperID, companyName, phone
+  Row 1: (1, 'Speedy Express', '(503) 555-9831')
+  Row 2: (2, 'United Package', '(503) 555-3199')
+  Row 3: (3, 'Federal Shipping', '(503) 555-9931')
+
+------------------------------------------------------------
+
+### TABLE: suppliers
+Rows: 29
+
+Columns:
+  - supplierID: bigint(64) NOT NULL
+  - companyName: text NULL
+  - contactName: text NULL
+  - contactTitle: text NULL
+  - address: text NULL
+  - city: text NULL
+  - region: text NULL
+  - postalCode: text NULL
+  - country: text NULL
+  - phone: text NULL
+  - fax: text NULL
+
+Primary Key: supplierID
+
+Sample Data:
+  Columns: supplierID, companyName, contactName, contactTitle, address, city, region, postalCode, country, phone, fax
+  Row 1: (1, 'Exotic Liquids', 'Charlotte Cooper', 'Purchasing Manager', '49 Gilbert St.', 'London', 'UK', 'EC1 4SD', 'UK', '(171) 555-2222', None)
+  Row 2: (2, 'New Orleans Cajun Delights', 'Shelley Burke', 'Order Administrator', 'P.O. Box 78934', 'New Orleans', 'LA', '70117', 'USA', '(100) 555-4822', None)
+  Row 3: (3, "Grandma Kelly's Homestead", 'Regina Murphy', 'Sales Representative', '707 Oxford Rd.', 'Ann Arbor', 'MI', '48104', 'USA', '(313) 555-5735', '(313) 555-3349')
+
+------------------------------------------------------------
+
+### TABLE: territories
+Rows: 53
+
+Columns:
+  - territoryID: bigint(64) NOT NULL
+  - territoryDescription: text NULL
+  - regionID: bigint(64) NULL
+
+Primary Key: territoryID
+
+Foreign Keys:
+  - regionID REFERENCES regions(regionID)
+
+Sample Data:
+  Columns: territoryID, territoryDescription, regionID
+  Row 1: (1581, 'Westboro', 1)
+  Row 2: (1730, 'Bedford', 1)
+  Row 3: (1833, 'Georgetow', 1)
+
+------------------------------------------------------------
+
+## BUSINESS CONTEXT
+This appears to be a Northwind-style business database with the following key entities:
+- Customers: Companies that place orders
+- Products: Items sold, organized by categories and supplied by suppliers
+- Orders: Customer purchases handled by employees
+- OrderDetails: Line items for each order
+- Employees: Staff who process orders and manage territories
+- Suppliers: Companies that provide products
+- Categories: Product groupings
+- Territories/Regions: Geographic sales areas
+- Shippers: Companies that deliver orders
+
+## COMMON QUERY PATTERNS
+- Sales analysis: JOIN orders, orderdetails, products, categories
+- Customer analysis: JOIN customers, orders, orderdetails
+- Product performance: JOIN products, orderdetails, categories
+- Employee performance: JOIN employees, orders, territories
+- Supplier analysis: JOIN suppliers, products, orderdetails

@@ -1,0 +1,29 @@
+List all product names and their corresponding category names. ✅
+ 
+Show the names and contact titles of customers located in Germany.✅
+ 
+Get a list of employees along with the cities they live in.✅
+  
+Which products have more than 100 units in stock?✅
+ 
+Find all orders placed after January 1, 2024.✅
+ 
+What are the names of suppliers from the United States?✅
+ 
+Show all customers along with their postal codes and countries.✅
+ 
+Display the total quantity of each product ordered across all orders.✅
+ 
+List employees along with their managers (reportsTo). ❌
+ 
+Which customers have placed orders that were shipped to France?✅
+ 
+Find the average unit price of all products within each category.✅
+ 
+Get the full names (first and last) of employees who work in the 'Eastern' region.✅
+ 
+What are the top 5 most frequently ordered products?
+ 
+Show all orders and include the shipper's company name.
+ 
+Which territories are managed by employee with ID 5?

@@ -1,0 +1,10 @@
+# config2.yaml
+openaikey: "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"
+org_id: "org-v1OxfSDLcUhxHFsp1r8SkVtl"
+
+postgres:
+  host: "localhost"
+  dbname: "better_data"
+  user:  "postgres"
+  password: "#tigi0907"
+  port: 5432
