@@ -4,7 +4,7 @@ org_id: "org-v1OxfSDLcUhxHFsp1r8SkVtl"
 
 postgres:
   host: "localhost"
-  dbname: "better_data"
-  user:  "postgres"
+  dbname: "postgres"
+  user: "postgres"
   password: "#tigi0907"
   port: 5432
