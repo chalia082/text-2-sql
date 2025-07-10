@@ -1,0 +1,29 @@
+# config.yaml
+
+openai:
+  api_key: "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"
+  org_id: "org-v1OxfSDLcUhxHFsp1r8SkVtl"
+
+postgres:
+  host: "localhost"
+  database: "banking_data"
+  user: "postgres"
+  password: "#tigi0907"
+  port: 5432
+  uri: "postgresql+psycopg2://postgres:#tigi0907@localhost:5432/banking_data"
+
+embedding:
+  provider: openai
+  model: text-embedding-3-small
+
+paths:
+  schema_json: embeddings/schema.json
+  index_folder: embeddings/faiss_index
+  embedding_dir: embeddings
+
+settings:
+  top_k: 5
+
+llm:
+  model: gpt-3.5-turbo
+  temperature: 0.0
