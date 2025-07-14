@@ -9,7 +9,7 @@ formatter_node = RunnableLambda(
             if isinstance(state.query_result, pd.DataFrame) and not state.query_result.empty
             else "ℹ️ Query executed successfully but returned no results."
             if isinstance(state.query_result, pd.DataFrame)
-            else f"❌ No SQL result available.\n\n🪵 Raw: {state.query_result}"
+            else f"No SQL result available. 🪵 Raw: {state.query_result}"
         )
     })
 )
