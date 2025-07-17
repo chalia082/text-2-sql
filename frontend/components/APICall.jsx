@@ -23,7 +23,7 @@ export default function APICall() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ query: currentQuery }),
+          body: JSON.stringify({ user_input: currentQuery }),
         });
 
         if (!response.ok) {

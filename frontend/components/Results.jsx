@@ -8,6 +8,9 @@ export default function Results({ results }) {
     return null;
   }
 
+  // console.log(results);
+  
+
   const columns = useMemo(() => {
     if (results.length === 0) return null;
     return Object.keys(results[0]);
@@ -32,8 +35,8 @@ export default function Results({ results }) {
             <TableCaption className='text-start'>
               Query returned {results.length} row{results.length !== 1 ? 's' : ''} with {columns.length} column{columns.length !== 1 ? 's' : ''}
             </TableCaption>
-            <TableHeader className='sticky top-0 bg-gray-50 z-10'>
-              <TableRow>
+            <TableHeader className='relative'>
+              <TableRow className='sticky top-0 right-0 left-0 bg-gray-50 z-10'>
                 {columns.map((column) => (
                   <TableHead
                     key={column}

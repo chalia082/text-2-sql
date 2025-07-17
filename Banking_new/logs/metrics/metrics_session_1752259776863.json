@@ -1,0 +1,27 @@
+{
+  "session_id": "session_1752259776863",
+  "user_input": "38.\tList customers who had a failed loan payment followed by a successful one.",
+  "start_time": "2025-07-11T13:49:36.863703",
+  "end_time": "2025-07-11T13:49:36.876535",
+  "total_duration_ms": 12.831999999999999,
+  "overall_success": false,
+  "stages": [
+    {
+      "stage_name": "schema_initializer",
+      "timestamp": "2025-07-11T13:49:36.875491",
+      "duration_ms": 0.0,
+      "success": false,
+      "input_size": null,
+      "output_size": null,
+      "error_message": "'RunnableLambda' object is not callable",
+      "accuracy_score": 0.0,
+      "confidence_score": 0.0,
+      "api_calls": 0,
+      "api_latency_ms": 0.0
+    }
+  ],
+  "final_sql": null,
+  "final_result": null,
+  "validation_passed": null,
+  "execution_success": null
+}

@@ -1,0 +1,67 @@
+# config.yaml
+openai:
+  api_key: "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"
+  org_id: "org-9hDc3Evr6SSukX9jiyX1f78R"
+
+postgres:
+  host: "localhost"
+  database: "banking_data"
+  user: "postgres"
+  password: "#tigi0907"
+  port: 5432
+  uri: "postgresql+psycopg2://postgres:#tigi0907@localhost:5432/banking_data"
+
+embedding:
+  provider: openai
+  model: text-embedding-3-small
+
+paths:
+  schema_json: embeddings/schema.json
+  index_folder: embeddings/faiss_index
+  embedding_dir: embeddings
+  table_index_folder: embeddings/faiss_table_index
+  logs_dir: logs
+
+settings:
+  column_top_k: 5
+  table_top_k: 3
+  value_top_k: 7  # For value-level (categorical) semantic matches
+  similarity_threshold: 0.7
+  forbidden_sql_keywords:            
+    - "insert"
+    - "update" 
+    - "delete"
+    - "drop"
+    - "alter"
+    - "truncate"
+    - "create"
+    - "grant"
+    - "revoke"
+  
+  # Column mapping overrides (for known semantic mismatches)
+  column_mappings:
+    loan_types:
+      loan_type_name: loan_type      # Maps 'loan_type_name' to 'loan_type' in loan_types table
+  
+  # Logging settings
+  log_level: INFO
+  log_format: "%(asctime)s - %(levelname)s - %(message)s"
+  
+  # Performance settings
+  max_query_timeout: 30              # Maximum query execution time in seconds
+  max_result_rows: 1000              # Maximum number of rows to return
+  
+  # UI settings
+  page_title: "Text-to-SQL Agent"
+  page_layout: "centered"
+
+llm:
+  model: gpt-3.5-turbo
+  temperature: 0.0
+  max_tokens: 2000                   # Maximum tokens for SQL generation
+
+
+  
+# config.yaml
+
+

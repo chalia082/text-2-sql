@@ -29,6 +29,14 @@ export default function QueryProvider({ children }) {
     setResponses(prev => [...prev, newResponse]);
   }
 
+  const clearChat = () => {
+    setIsSubmitted(false)
+    setQueries([])
+    setCurrentQueryIndex(-1)
+    setResponses([])
+    setIsLoading(false)
+  }
+
   return (
     <QueryContext.Provider 
       value={{ 
@@ -41,7 +49,8 @@ export default function QueryProvider({ children }) {
         addQuery, 
         toggleInput,
         toggleLoading,
-        addResponse 
+        addResponse,
+        clearChat 
       }}
     >
 			{children}

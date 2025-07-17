@@ -132,7 +132,52 @@ html,body, :root {
 }
 
 /*---clerk-----*/
-@layer theme, base, clerk, components, utilities;
+@layer theme, base, clerk, components;
+
+@property --angle{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: False;
+}
+
+@layer utilities {
+  .card-wrapper {
+    @apply relative p-1;
+  }
+
+  .card-wrapper::after, .card-wrapper::before {
+    position: absolute;
+    background-image: conic-gradient(
+      from var(--angle),
+      #EE2D3D ,
+      #602CF3 ,
+      #48B9FD ,
+      #100A50 ,
+      #872CC1 ,
+      #C10D68 
+    );
+    z-index: -1;
+    animation: 3s border-spin linear infinite;
+    @apply rounded-4xl;
+  }
+
+  .card-wrapper::before{
+    @apply absolute inset-0.5 blur opacity-50 content-[''];
+  }
+
+  .card-content {
+    @apply relative bg-white rounded-4xl;
+  }
+
+  @keyframes border-spin {
+    from  {
+      --angle: 0deg;
+    }
+    to {
+      --angle: 360deg;
+    }
+  }
+}
 
 .custom-scrollbar {
   padding-right: 5px;

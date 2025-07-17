@@ -1,0 +1,326 @@
+{
+  "account_types": {
+    "description": "Table containing different types of bank accounts (e.g., savings, checking, current).",
+    "columns": {
+      "account_type_id": {
+        "type": "integer",
+        "description": "Unique identifier for each account type (also known as type id, acct_type_id)."
+      },
+      "account_type": {
+        "type": "character varying",
+        "description": "Name or category of the account type (e.g., savings, checking; also known as type, acct_type)."
+      }
+    }
+  },
+  "accounts": {
+    "description": "Table storing information about customer accounts at the bank.",
+    "columns": {
+      "account_id": {
+        "type": "integer",
+        "description": "Unique identifier for each account (also known as acc_id, acct_id, account number)."
+      },
+      "customer_id": {
+        "type": "integer",
+        "description": "References the customer who owns the account (also known as cust_id, id, customer number)."
+      },
+      "branch_id": {
+        "type": "integer",
+        "description": "References the branch where the account is held (also known as branchid, branch number)."
+      },
+      "account_type_id": {
+        "type": "integer",
+        "description": "References the type/category of the account (also known as type id, acct_type_id)."
+      },
+      "balance": {
+        "type": "numeric",
+        "description": "Current balance of the account (also known as bal, amount, funds)."
+      },
+      "open_date": {
+        "type": "date",
+        "description": "Date when the account was opened (also known as start date, opening date, account start date)."
+      }
+    }
+  },
+  "atm_withdrawals": {
+    "description": "Table recording ATM withdrawal transactions.",
+    "columns": {
+      "withdrawal_id": {
+        "type": "integer",
+        "description": "Unique identifier for each ATM withdrawal (also known as withdrawal number, txn id)."
+      },
+      "account_id": {
+        "type": "integer",
+        "description": "References the account from which money was withdrawn (also known as acc_id, acct_id)."
+      },
+      "withdrawal_date": {
+        "type": "date",
+        "description": "Date of the ATM withdrawal (also known as txn_date, transaction date)."
+      },
+      "amount": {
+        "type": "numeric",
+        "description": "Amount withdrawn from the ATM (also known as amt, funds, value)."
+      },
+      "atm_location": {
+        "type": "text",
+        "description": "Location of the ATM where the withdrawal occurred (also known as location, branch location)."
+      }
+    }
+  },
+  "branches": {
+    "description": "Table containing information about bank branches.",
+    "columns": {
+      "branch_id": {
+        "type": "integer",
+        "description": "Unique identifier for each branch (also known as branchid, branch number, office, location)."
+      },
+      "branch_name": {
+        "type": "character varying",
+        "description": "Name of the branch (also known as branch, office name)."
+      },
+      "city": {
+        "type": "character varying",
+        "description": "City where the branch is located."
+      },
+      "state": {
+        "type": "character varying",
+        "description": "State where the branch is located."
+      },
+      "manager_name": {
+        "type": "character varying",
+        "description": "Name of the branch manager (also known as manager, branch manager)."
+      },
+      "open_date": {
+        "type": "date",
+        "description": "Date when the branch was opened (also known as start date, opening date)."
+      }
+    }
+  },
+  "card_transactions": {
+    "description": "Table recording transactions made using credit cards.",
+    "columns": {
+      "card_txn_id": {
+        "type": "integer",
+        "description": "Unique identifier for each card transaction (also known as transaction id, txn id, card transaction number)."
+      },
+      "card_id": {
+        "type": "integer",
+        "description": "References the credit card used in the transaction (also known as card number, cc, credit card id)."
+      },
+      "txn_date": {
+        "type": "date",
+        "description": "Date of the card transaction (also known as transaction date, date)."
+      },
+      "merchant": {
+        "type": "character varying",
+        "description": "Merchant where the transaction took place (also known as vendor, shop)."
+      },
+      "amount": {
+        "type": "numeric",
+        "description": "Amount spent in the transaction (also known as amt, value, funds)."
+      },
+      "category": {
+        "type": "character varying",
+        "description": "Category of the transaction (e.g., groceries, travel; also known as type, txn_type)."
+      }
+    }
+  },
+  "credit_cards": {
+    "description": "Table containing information about credit cards issued to customers.",
+    "columns": {
+      "card_id": {
+        "type": "integer",
+        "description": "Unique identifier for each credit card (also known as card number, cc, credit card id)."
+      },
+      "customer_id": {
+        "type": "integer",
+        "description": "References the customer who owns the card (also known as cust_id, id, customer number)."
+      },
+      "account_id": {
+        "type": "integer",
+        "description": "References the account linked to the card (also known as acc_id, acct_id)."
+      },
+      "card_type": {
+        "type": "character varying",
+        "description": "Type of credit card (e.g., Visa, MasterCard; also known as type, card category)."
+      },
+      "credit_limit": {
+        "type": "numeric",
+        "description": "Maximum credit limit of the card (also known as limit, max credit)."
+      },
+      "issue_date": {
+        "type": "date",
+        "description": "Date when the card was issued (also known as start date, card start date)."
+      }
+    }
+  },
+  "customers": {
+    "description": "Table containing information about bank customers.",
+    "columns": {
+      "customer_id": {
+        "type": "integer",
+        "description": "Unique identifier for each customer (also known as cust_id, id, customer number, client, user, account_holder)."
+      },
+      "first_name": {
+        "type": "character varying",
+        "description": "Customer’s first name (also known as fname, given name)."
+      },
+      "last_name": {
+        "type": "character varying",
+        "description": "Customer’s last name (also known as lname, surname, family name)."
+      },
+      "email": {
+        "type": "character varying",
+        "description": "Customer’s email address."
+      },
+      "phone": {
+        "type": "character varying",
+        "description": "Customer’s phone number."
+      },
+      "dob": {
+        "type": "date",
+        "description": "Customer’s date of birth (also known as birth date, date of birth)."
+      },
+      "region": {
+        "type": "character varying",
+        "description": "Region or area where the customer resides (also known as location, area)."
+      },
+      "address": {
+        "type": "text",
+        "description": "Customer’s address (also known as addr, residence, home address)."
+      }
+    }
+  },
+  "employees": {
+    "description": "Table containing information about bank employees.",
+    "columns": {
+      "employee_id": {
+        "type": "integer",
+        "description": "Unique identifier for each employee (also known as emp_id, id, staff, worker)."
+      },
+      "branch_id": {
+        "type": "integer",
+        "description": "References the branch where the employee works (also known as branchid, branch number)."
+      },
+      "name": {
+        "type": "character varying",
+        "description": "Name of the employee (also known as employee name, staff name)."
+      },
+      "email": {
+        "type": "character varying",
+        "description": "Employee’s email address."
+      },
+      "phone": {
+        "type": "character varying",
+        "description": "Employee’s phone number."
+      },
+      "role": {
+        "type": "character varying",
+        "description": "Role or position of the employee (also known as position, job title)."
+      }
+    }
+  },
+  "loan_payments": {
+    "description": "Table recording payments made towards loans.",
+    "columns": {
+      "payment_id": {
+        "type": "integer",
+        "description": "Unique identifier for each loan payment (also known as payment number, txn id)."
+      },
+      "loan_id": {
+        "type": "integer",
+        "description": "References the loan for which the payment was made (also known as loanid, loan number)."
+      },
+      "payment_date": {
+        "type": "date",
+        "description": "Date when the payment was made (also known as pay_date, date of payment)."
+      },
+      "amount": {
+        "type": "numeric",
+        "description": "Amount paid (also known as amt, value, funds)."
+      },
+      "status": {
+        "type": "character varying",
+        "description": "Status of the payment (possible values: on-time, late, missed; synonyms: failed, fail = missed; success, successful, ontime = on-time)."
+      }
+    }
+  },
+  "loan_types": {
+    "description": "Table containing different types of loans offered by the bank.",
+    "columns": {
+      "loan_type_id": {
+        "type": "integer",
+        "description": "Unique identifier for each loan type (also known as type id, loan type number)."
+      },
+      "loan_type": {
+        "type": "character varying",
+        "description": "Name or category of the loan type (e.g., home, auto; also known as type, loan category)."
+      }
+    }
+  },
+  "loans": {
+    "description": "Table containing information about loans taken by customers.",
+    "columns": {
+      "loan_id": {
+        "type": "integer",
+        "description": "Unique identifier for each loan (also known as loanid, loan number, credit, borrowing)."
+      },
+      "customer_id": {
+        "type": "integer",
+        "description": "References the customer who took the loan (also known as cust_id, id, customer number)."
+      },
+      "account_id": {
+        "type": "integer",
+        "description": "References the account associated with the loan (also known as acc_id, acct_id)."
+      },
+      "loan_type_id": {
+        "type": "integer",
+        "description": "References the type/category of the loan (also known as type id, loan type number)."
+      },
+      "amount": {
+        "type": "numeric",
+        "description": "Principal amount of the loan (also known as amt, value, funds)."
+      },
+      "start_date": {
+        "type": "date",
+        "description": "Date when the loan started (also known as open date, loan start date)."
+      },
+      "term_months": {
+        "type": "integer",
+        "description": "Duration of the loan in months (also known as term, loan term)."
+      },
+      "interest_rate": {
+        "type": "numeric",
+        "description": "Interest rate applied to the loan (also known as rate, loan rate)."
+      }
+    }
+  },
+  "transactions": {
+    "description": "Table recording all account transactions.",
+    "columns": {
+      "txn_id": {
+        "type": "integer",
+        "description": "Unique identifier for each transaction (also known as transaction id, txn id, transaction identifier, payment, transfer)."
+      },
+      "account_id": {
+        "type": "integer",
+        "description": "References the account involved in the transaction (also known as acc_id, acct_id)."
+      },
+      "txn_date": {
+        "type": "date",
+        "description": "Date of the transaction (also known as transaction date, date)."
+      },
+      "amount": {
+        "type": "numeric",
+        "description": "Amount involved in the transaction (also known as amt, value, funds)."
+      },
+      "txn_type": {
+        "type": "character varying",
+        "description": "Type of transaction (e.g., credit, debit; also known as type, transaction type)."
+      },
+      "description": {
+        "type": "text",
+        "description": "Description or notes about the transaction (also known as details, transaction description)."
+      }
+    }
+  }
+}

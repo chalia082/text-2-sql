@@ -12,7 +12,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider appearance={{ cssLayerName: 'clerk', }}>
+    <ClerkProvider 
+      signInUrl="/login"
+      signUpUrl="/signup"
+      appearance={{ cssLayerName: 'clerk', }
+    }>
       <html lang="en">
         <body className={`antialiased`} >
           <QueryProvider>

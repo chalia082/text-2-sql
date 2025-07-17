@@ -1,9 +1,18 @@
 import Image from 'next/image'
 import React from 'react'
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { useQueryContext } from '@/lib/QueryProvider';
+
 
 
 export default function Header() {
+
+  const { clearChat } = useQueryContext()
+
+  const handleClick = () => {
+    clearChat()
+  }
+
   return (
     <div className="relative border-b-4" 
       style={{
@@ -12,7 +21,7 @@ export default function Header() {
       }}
     >
       <div className='relative container mx-auto bg-transparent flex justify-between px-6 py-5 items-center'>
-        <div className=''><Image src={'/WL_logo.png'} height={200} width={200} alt='WorldLink logo'/></div>
+        <div className='cursor-pointer' onClick={handleClick}><Image src={'/WL_logo.png'} height={200} width={200} alt='WorldLink logo'/></div>
         <header className="flex justify-end items-center">
           <SignedOut>
             <SignInButton />

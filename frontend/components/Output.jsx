@@ -10,6 +10,9 @@ export default function Output() {
   const chatMessages = [];
   const bottomRef = useRef(null);
 
+  console.log('response: ', responses);
+  
+
   for (let i=0; i < queries.length; i++) {
     if (queries[i]) {
       chatMessages.push({
@@ -26,9 +29,10 @@ export default function Output() {
           type: 'response',
           content: {
             error: responseData.error,
-            query: responseData.generated_sql.query || responseData.generated_sql,
-            suggestions: responseData.generated_sql.suggestions || null,
-            results: responseData.results || null,
+            query: responseData.generated_sql || responseData.final_ouput,
+            output: responseData.final_ouput,
+            // suggestions: responseData.generated_sql.suggestions || null,
+            results: responseData.query_result || null,
           },
         });
       } else if (responses[i].type === 'error') {
@@ -47,11 +51,11 @@ export default function Output() {
     }
   }, [chatMessages.length, isLoading])
 
-  // chatMessages.map((message) => {
-  //   if (message.type === 'response') {
-  //     console.log(message.content.error);
-  //   }
-  // })
+  chatMessages.map((message) => {
+    if (message.type === 'response') {
+      console.log(message.content.query);
+    }
+  })
 
   return ( 
     <div className='flex flex-col gap-10 w-full'>
@@ -88,7 +92,7 @@ export default function Output() {
                 )}
                 
                 {/* !------Suggestions------! */}
-                {Array.isArray(message.content.suggestions) && message.content.suggestions.length > 0 && (
+                {/* {Array.isArray(message.content.suggestions) && message.content.suggestions.length > 0 && (
                   <div className="mb-3">
                     <h2 className="font-semibold mb-2">Suggestions:</h2>
                     <ol className="space-y-1">
@@ -97,7 +101,7 @@ export default function Output() {
                       ))}
                     </ol>
                   </div>
-                )}
+                )} */}
 
                 {/* !------Errors------! */}
                 {message.content.error && (

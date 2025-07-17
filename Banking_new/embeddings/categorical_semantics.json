@@ -1,0 +1,189 @@
+{
+  "synonym_to_value": {
+    "loan_payments": {
+      "status": {
+        "declined": "missed",
+        "unsuccessful": "missed",
+        "error": "missed",
+        "rejected": "missed",
+        "bounced": "missed",
+        "failed": "missed",
+        "successful": "on-time",
+        "settled": "on-time",
+        "cleared": "on-time",
+        "completed": "on-time",
+        "processed": "on-time",
+        "paid": "on-time",
+        "in progress": "late",
+        "awaiting": "late",
+        "not yet processed": "late",
+        "processing": "late",
+        "delayed": "late",
+        "overdue": "late",
+        "past due": "late",
+        "late payment": "late"
+      }
+    },
+    "account_types": {
+      "account_type": {
+        "business account": "Business",
+        "company account": "Business",
+        "business": "Business",
+        "current account": "Current",
+        "current": "Current",
+        "joint account": "Joint",
+        "joint": "Joint",
+        "savings account": "Savings",
+        "deposit account": "Savings",
+        "savings": "Savings",
+        "deposit": "Savings",
+        "checking account": "Checking",
+        "chequing": "Checking",
+        "checking": "Checking"
+      }
+    },
+    "card_transactions": {
+      "category": {
+        "food shopping": "groceries",
+        "supermarket": "groceries",
+        "market": "groceries",
+        "food store": "groceries",
+        "flights": "travel",
+        "hotels": "travel",
+        "transportation": "travel",
+        "vacation": "travel",
+        "trip": "travel",
+        "retail": "shopping",
+        "purchases": "shopping",
+        "buying": "shopping",
+        "store": "shopping",
+        "mall": "shopping"
+      }
+    },
+    "credit_cards": {
+      "card_type": {
+        "visa card": "Visa",
+        "credit card": "Visa",
+        "payment card": "Visa",
+        "mastercard": "MasterCard",
+        "american express": "Amex",
+        "amex card": "Amex"
+      }
+    },
+    "loan_types": {
+      "loan_type": {
+        "mortgage": "home",
+        "housing loan": "home",
+        "property loan": "home",
+        "real estate loan": "home",
+        "car loan": "auto",
+        "vehicle loan": "auto",
+        "automobile loan": "auto",
+        "auto finance": "auto",
+        "consumer loan": "personal",
+        "unsecured loan": "personal",
+        "personal finance": "personal"
+      }
+    }
+  },
+  "account_types": {
+    "account_type": {
+      "Business": {
+        "description": "An account for business or company use.",
+        "synonyms": ["business account", "company account", "business"]
+      },
+      "Current": {
+        "description": "A current account for frequent transactions, often used by businesses.",
+        "synonyms": ["current account", "current"]
+      },
+      "Joint": {
+        "description": "An account shared by two or more individuals.",
+        "synonyms": ["joint account", "joint"]
+      },
+      "Savings": {
+        "description": "A savings account for storing funds and earning interest.",
+        "synonyms": ["savings account", "deposit account", "savings", "deposit"]
+      },
+      "Checking": {
+        "description": "A checking account for daily transactions.",
+        "synonyms": ["checking account", "chequing", "checking"]
+      }
+    }
+  },
+  "card_transactions": {
+    "category": {
+      "groceries": {
+        "description": "Transactions made at grocery stores or supermarkets.",
+        "synonyms": ["food shopping", "supermarket", "market", "food store"]
+      },
+      "travel": {
+        "description": "Transactions related to travel, such as flights, hotels, or transportation.",
+        "synonyms": ["flights", "hotels", "transportation", "vacation", "trip"]
+      },
+      "shopping": {
+        "description": "Transactions for retail purchases, including clothing, electronics, and other goods.",
+        "synonyms": ["retail", "purchases", "buying", "store", "mall"]
+      }
+    }
+  },
+  "credit_cards": {
+    "card_type": {
+      "Visa": {
+        "description": "A credit card issued under the Visa network.",
+        "synonyms": ["visa card", "credit card", "payment card"]
+      },
+      "MasterCard": {
+        "description": "A credit card issued under the MasterCard network.",
+        "synonyms": ["mastercard", "credit card", "payment card"]
+      },
+      "Amex": {
+        "description": "A credit card issued under the American Express network.",
+        "synonyms": ["american express", "amex card", "credit card", "payment card"]
+      }
+    }
+  },
+  "loan_types": {
+    "loan_type": {
+      "home": {
+        "description": "A loan provided for purchasing or renovating a home.",
+        "synonyms": ["mortgage", "housing loan", "property loan", "real estate loan"]
+      },
+      "auto": {
+        "description": "A loan provided for purchasing a vehicle.",
+        "synonyms": ["car loan", "vehicle loan", "automobile loan", "auto finance"]
+      },
+      "personal": {
+        "description": "A loan provided for personal use, not tied to a specific asset.",
+        "synonyms": ["consumer loan", "unsecured loan", "personal finance"]
+      }
+    }
+  },
+  "loan_payments": {
+    "status": {
+      "on-time": {
+        "description": "The loan payment was made on time.",
+        "synonyms": ["successful", "settled", "cleared", "completed", "processed", "paid"]
+      },
+      "missed": {
+        "description": "The loan payment was missed or failed.",
+        "synonyms": ["unsuccessful", "declined", "error", "rejected", "bounced", "failed"]
+      },
+      "late": {
+        "description": "The loan payment was made but after the due date.",
+        "synonyms": ["delayed", "overdue", "past due", "late payment"]
+      }
+    }
+  },
+  "accounts": {
+    "account_type_id": {
+      "1": {
+        "description": "Refers to a savings account type.",
+        "synonyms": ["savings", "deposit", "interest account"]
+      },
+      "2": {
+        "description": "Refers to a checking account type.",
+        "synonyms": ["checking", "current", "transaction account"]
+      }
+    }
+  }
+} 
