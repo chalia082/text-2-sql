@@ -1,1 +1,0 @@
-ALTER TABLE loan_payments ADD COLUMN interest_amount NUMERIC; 

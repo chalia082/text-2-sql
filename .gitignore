@@ -1,3 +1,5 @@
 t2sql/
 
-# *.yaml
+*.yaml
+backend/config.yaml
+backend/config.yaml

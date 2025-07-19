@@ -6,10 +6,10 @@ from sqlalchemy import create_engine
 # ✅ PostgreSQL connection details
 DB_CONFIG = {
     "user": "postgres",
-    "password": "root",         # Change this if needed
+    "password": "#tigi0907",         # Change this if needed
     "host": "localhost",
     "port": 5432,
-    "dbname": "text2sql2"
+    "dbname": "banking_data"
 }
 
 # ✅ Create SQLAlchemy engine

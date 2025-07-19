@@ -1,6 +1,5 @@
 'use client';
 
-import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
@@ -30,9 +29,10 @@ function LayoutContent({ children }) {
   return (
     <div className="h-full flex w-full">
       <SignedIn>
-        <div className=""><Sidebar /></div>
-        <main className="w-full">{children}</main>
-        <footer className=""> </footer>
+        
+          <div className=""><Sidebar /></div>
+          <main className="w-full transition-all duration-200 ease-in-out">{children}</main>
+        
       </SignedIn>
       <SignedOut>
         <SignedOutRedirect />

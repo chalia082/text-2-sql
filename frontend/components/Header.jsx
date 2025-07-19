@@ -14,13 +14,13 @@ export default function Header() {
   }
 
   return (
-    <div className="relative border-b-4" 
+    <div className="relative border-b-2" 
       style={{
         borderImage: "linear-gradient(90deg, #EE2D3D 0%, #602CF3 20%, #48B9FD 40%, #100A50 60%, #872CC1 80%, #C10D68 100%) 1",
         borderBottomStyle: "solid"
       }}
     >
-      <div className='relative container mx-auto bg-transparent flex justify-between px-6 py-5 items-center'>
+      <div className='relative container mx-auto bg-transparent flex justify-between grow px-6 py-4 items-center'>
         <div className='cursor-pointer' onClick={handleClick}><Image src={'/WL_logo.png'} height={200} width={200} alt='WorldLink logo'/></div>
         <header className="flex justify-end items-center">
           <SignedOut>

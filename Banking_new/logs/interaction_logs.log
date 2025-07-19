@@ -707,3 +707,7 @@ JOIN customer_cards cc ON c.customer_id = cc.customer_id;
 2025-07-17 12:07:32,484 - INFO - {'User Input': 'hello', 'Intent': 'greet', 'Used Prompt': None, 'Generated SQL': None, 'Validation Passed': None, 'Validation Error': None, 'Execution Error': None, 'Final Answer': '\u274c No SQL result available.\n\n\U0001fab5 Raw: None'}
 2025-07-17 12:07:32,484 - INFO - \u2705 Query processed successfully in 1.09s
 2025-07-17 12:07:32,484 - INFO - 127.0.0.1 - - [17/Jul/2025 12:07:32] "POST /query HTTP/1.1" 200 -
+2025-07-18 08:56:20,972 - INFO - text-to-sql graph initialized successfully
+2025-07-18 08:56:20,981 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-07-18 08:56:20,981 - INFO - [33mPress CTRL+C to quit[0m

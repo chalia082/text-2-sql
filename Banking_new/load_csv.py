@@ -5,9 +5,9 @@ from psycopg2 import sql
 
 # PostgreSQL credentials
 db_config = {
-    "dbname": "text2sql2",
+    "dbname": "banking_data",
     "user": "postgres",
-    "password": "root",  # 🔁 Replace this with your actual password
+    "password": "#tigi0907", 
     "host": "localhost",
     "port": 5432
 }

@@ -10,7 +10,9 @@ export default function Output() {
   const chatMessages = [];
   const bottomRef = useRef(null);
 
-  console.log('response: ', responses);
+  responses.map((response) => {
+    console.log('response: ', response);
+  })
   
 
   for (let i=0; i < queries.length; i++) {
@@ -29,10 +31,10 @@ export default function Output() {
           type: 'response',
           content: {
             error: responseData.error,
-            query: responseData.generated_sql || responseData.final_ouput,
-            output: responseData.final_ouput,
-            // suggestions: responseData.generated_sql.suggestions || null,
-            results: responseData.query_result || null,
+            query: responseData.generated_sql,
+            output: responseData.final_output,
+            suggestions: responseData.suggestions || [],
+            results: responseData.query_result || [],
           },
         });
       } else if (responses[i].type === 'error') {
@@ -53,7 +55,7 @@ export default function Output() {
 
   chatMessages.map((message) => {
     if (message.type === 'response') {
-      console.log(message.content.query);
+      console.log("message:", message);
     }
   })
 
@@ -64,35 +66,35 @@ export default function Output() {
           <div className={`px-4 py-3 rounded-xl shadow-md overflow-x-auto 
             ${
               message.type === 'query'  
-              ? 'max-w-[80%]' 
+              ? 'max-w-[80%] ' 
               : message.type === 'error'
               ? 'bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100' 
-              : 'bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
+              : 'bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-400'
             }
           `}>
             {message.type === 'response' ? (
               <div className="flex flex-col">
                 {/* !------SQL Query------! */}
-                {message.content.query && (
+                {message.content.query && message.content.query.trim() !== '' ? (
                   <div className="mb-3">
-                    {message.content.query.blocked_cmds ? (
-                      <div>
-                        <h2 className="font-semibold mb-4">Error:</h2>
-                        <span className="bg-white rounded-2xl px-5 py-3 text-red-700 dark:bg-red-800 dark:text-red-100">{message.content.query.blocked_cmds}</span>
-                      </div>
-                    ): (
-                      <div className="">
-                        <h2 className="font-semibold mb-2">SQL Query:</h2>
-                        <pre className='whitespace-pre-wrap font-mono bg-white rounded-2xl px-5 py-3'>
-                          <SyntaxHighlighter language='sql' style={colorBrewer}>{message.content.query}</SyntaxHighlighter>
-                        </pre>
-                      </div>
-                    )}
+                    <h2 className="font-semibold mb-2">SQL Query:</h2>
+                    <pre className='whitespace-pre-wrap font-mono bg-white rounded-2xl px-5 py-3'>
+                      <SyntaxHighlighter language='sql' style={colorBrewer}>
+                        {message.content.query}
+                      </SyntaxHighlighter>
+                    </pre>
                   </div>
-                )}
+                ) : message.content.output ? (
+                  <div className="mb-3">
+                    <h2 className="font-semibold mb-2">Output:</h2>
+                    <div className='whitespace-pre-wrap bg-white rounded-2xl px-5 py-3'>
+                      {message.content.output}
+                    </div>
+                  </div>
+                ) : null}
                 
                 {/* !------Suggestions------! */}
-                {/* {Array.isArray(message.content.suggestions) && message.content.suggestions.length > 0 && (
+                {Array.isArray(message.content.suggestions) && message.content.suggestions.length > 0 && (
                   <div className="mb-3">
                     <h2 className="font-semibold mb-2">Suggestions:</h2>
                     <ol className="space-y-1">
@@ -101,7 +103,7 @@ export default function Output() {
                       ))}
                     </ol>
                   </div>
-                )} */}
+                )}
 
                 {/* !------Errors------! */}
                 {message.content.error && (

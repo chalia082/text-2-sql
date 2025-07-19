@@ -1,0 +1,146 @@
+[
+  {
+    "table_name": "account_types",
+    "description": "Types of bank accounts (e.g., savings, checking).",
+    "columns": [
+      {"name": "account_type_id", "type": "INTEGER", "description": "Unique identifier for the account type."},
+      {"name": "account_type", "type": "VARCHAR(50)", "description": "Name of the account type (e.g., savings, checking)."}
+    ]
+  },
+  {
+    "table_name": "loan_types",
+    "description": "Types of loans offered by the bank.",
+    "columns": [
+      {"name": "loan_type_id", "type": "INTEGER", "description": "Unique identifier for the loan type."},
+      {"name": "loan_type", "type": "VARCHAR(50)", "description": "Name of the loan type (e.g., home, auto, personal)."}
+    ]
+  },
+  {
+    "table_name": "branches",
+    "description": "Bank branch locations and details.",
+    "columns": [
+      {"name": "branch_id", "type": "INTEGER", "description": "Unique identifier for the branch."},
+      {"name": "branch_name", "type": "VARCHAR(100)", "description": "Name of the branch."},
+      {"name": "city", "type": "VARCHAR(100)", "description": "City where the branch is located."},
+      {"name": "state", "type": "VARCHAR(100)", "description": "State where the branch is located."},
+      {"name": "manager_name", "type": "VARCHAR(100)", "description": "Name of the branch manager."},
+      {"name": "open_date", "type": "DATE", "description": "Date when the branch was opened."}
+    ]
+  },
+  {
+    "table_name": "customers",
+    "description": "Bank customers (people, clients, account holders) and their personal information.",
+    "columns": [
+      {"name": "customer_id", "type": "INTEGER", "description": "Unique identifier for the customer (person, client, account holder)."},
+      {"name": "first_name", "type": "VARCHAR(100)", "description": "Customer's first name (person's first name, client's first name)."},
+      {"name": "last_name", "type": "VARCHAR(100)", "description": "Customer's last name (person's last name, client's last name)."},
+      {"name": "email", "type": "VARCHAR(100)", "description": "Customer's email address (person's email, client's email)."},
+      {"name": "phone", "type": "VARCHAR(50)", "description": "Customer's phone number (contact number, mobile, telephone, person's phone, client's phone)."},
+      {"name": "dob", "type": "DATE", "description": "Customer's date of birth (person's date of birth, client's date of birth)."},
+      {"name": "region", "type": "VARCHAR(100)", "description": "Region where the customer (person, client) resides."},
+      {"name": "address", "type": "TEXT", "description": "Customer's address (person's address, client's address)."}
+    ]
+  },
+  {
+    "table_name": "employees",
+    "description": "Bank employees and their roles.",
+    "columns": [
+      {"name": "employee_id", "type": "INTEGER", "description": "Unique identifier for the employee."},
+      {"name": "branch_id", "type": "INTEGER", "description": "Branch where the employee works."},
+      {"name": "name", "type": "VARCHAR(100)", "description": "Employee's name."},
+      {"name": "email", "type": "VARCHAR(100)", "description": "Employee's email address."},
+      {"name": "phone", "type": "VARCHAR(50)", "description": "Employee's phone number."},
+      {"name": "role", "type": "VARCHAR(50)", "description": "Employee's role at the bank (e.g., manager, teller)."}
+    ]
+  },
+  {
+    "table_name": "accounts",
+    "description": "Bank accounts held by customers.",
+    "columns": [
+      {"name": "account_id", "type": "INTEGER", "description": "Unique identifier for the account."},
+      {"name": "customer_id", "type": "INTEGER", "description": "Customer who owns the account."},
+      {"name": "branch_id", "type": "INTEGER", "description": "Branch where the account is held."},
+      {"name": "account_type_id", "type": "INTEGER", "description": "Type of the account."},
+      {"name": "balance", "type": "NUMERIC(12,2)", "description": "Current balance of the account."},
+      {"name": "open_date", "type": "DATE", "description": "Date when the account was opened."}
+    ]
+  },
+  {
+    "table_name": "transactions",
+    "description": "Transactions made on accounts.",
+    "columns": [
+      {"name": "txn_id", "type": "INTEGER", "description": "Unique identifier for the transaction."},
+      {"name": "account_id", "type": "INTEGER", "description": "Account involved in the transaction."},
+      {"name": "txn_date", "type": "DATE", "description": "Date of the transaction."},
+      {"name": "amount", "type": "NUMERIC(12,2)", "description": "Amount of the transaction."},
+      {"name": "txn_type", "type": "VARCHAR(20)", "description": "Type of transaction (e.g., deposit, withdrawal, transfer)."},
+      {"name": "description", "type": "TEXT", "description": "Description or note for the transaction."}
+    ]
+  },
+  {
+    "table_name": "loans",
+    "description": "Loans taken by customers.",
+    "columns": [
+      {"name": "loan_id", "type": "INTEGER", "description": "Unique identifier for the loan."},
+      {"name": "customer_id", "type": "INTEGER", "description": "Customer who took the loan."},
+      {"name": "account_id", "type": "INTEGER", "description": "Account associated with the loan."},
+      {"name": "loan_type_id", "type": "INTEGER", "description": "Type of the loan."},
+      {"name": "amount", "type": "NUMERIC(12,2)", "description": "Loan amount."},
+      {"name": "start_date", "type": "DATE", "description": "Date when the loan started."},
+      {"name": "term_months", "type": "INTEGER", "description": "Loan term in months."},
+      {"name": "interest_rate", "type": "NUMERIC(5,2)", "description": "Interest rate for the loan."}
+    ]
+  },
+  {
+    "table_name": "loan_payments",
+    "description": "Payments made towards loans.",
+    "columns": [
+      {"name": "payment_id", "type": "INTEGER", "description": "Unique identifier for the payment."},
+      {"name": "loan_id", "type": "INTEGER", "description": "Loan for which the payment was made."},
+      {"name": "payment_date", "type": "DATE", "description": "Date of the payment."},
+      {"name": "amount", "type": "NUMERIC(12,2)", "description": "Amount paid."},
+      {
+        "name": "status",
+        "type": "VARCHAR(20)",
+        "description": "Payment status (missed, on time, late).",
+        "possible_values": ["missed", "on time", "late"],
+        "value_mappings": {"declined": "missed"}
+      }
+    ]
+  },
+  {
+    "table_name": "credit_cards",
+    "description": "Credit cards issued to customers.",
+    "columns": [
+      {"name": "card_id", "type": "INTEGER", "description": "Unique identifier for the credit card."},
+      {"name": "customer_id", "type": "INTEGER", "description": "Customer who owns the card."},
+      {"name": "account_id", "type": "INTEGER", "description": "Account linked to the card."},
+      {"name": "card_type", "type": "VARCHAR(50)", "description": "Type of the credit card (e.g., Visa, MasterCard)."},
+      {"name": "credit_limit", "type": "NUMERIC(12,2)", "description": "Credit limit of the card."},
+      {"name": "issue_date", "type": "DATE", "description": "Date when the card was issued."}
+    ]
+  },
+  {
+    "table_name": "card_transactions",
+    "description": "Transactions made using credit cards.",
+    "columns": [
+      {"name": "card_txn_id", "type": "INTEGER", "description": "Unique identifier for the card transaction."},
+      {"name": "card_id", "type": "INTEGER", "description": "Credit card used for the transaction."},
+      {"name": "txn_date", "type": "DATE", "description": "Date of the transaction."},
+      {"name": "merchant", "type": "VARCHAR(100)", "description": "Merchant where the transaction occurred."},
+      {"name": "amount", "type": "NUMERIC(12,2)", "description": "Transaction amount."},
+      {"name": "category", "type": "VARCHAR(50)", "description": "Category of the transaction (e.g., groceries, travel)."}
+    ]
+  },
+  {
+    "table_name": "atm_withdrawals",
+    "description": "ATM withdrawals made from accounts.",
+    "columns": [
+      {"name": "withdrawal_id", "type": "INTEGER", "description": "Unique identifier for the withdrawal."},
+      {"name": "account_id", "type": "INTEGER", "description": "Account from which the withdrawal was made."},
+      {"name": "withdrawal_date", "type": "DATE", "description": "Date of the withdrawal."},
+      {"name": "amount", "type": "NUMERIC(12,2)", "description": "Amount withdrawn."},
+      {"name": "atm_location", "type": "TEXT", "description": "Location of the ATM."}
+    ]
+  }
+] 
