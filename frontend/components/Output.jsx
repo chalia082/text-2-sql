@@ -3,6 +3,8 @@ import React, { useEffect, useRef } from 'react'
 import Results from './Results';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { colorBrewer } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import InsightButton from './InsightButton';
+import VisualizationButton from './VisualizationButton';
 
 export default function Output() {
 
@@ -21,6 +23,7 @@ export default function Output() {
         id: `query-${i}`,
         type: 'query',
         content: queries[i],
+        messageIndex: i,
       });
     }
     if (responses[i]) {
@@ -29,6 +32,7 @@ export default function Output() {
         chatMessages.push({
           id: `response-${i}`,
           type: 'response',
+          messageIndex: i,
           content: {
             error: responseData.error,
             query: responseData.generated_sql,
@@ -41,6 +45,7 @@ export default function Output() {
         chatMessages.push({
           id: `error-${i}`,
           type: 'error',
+          messageIndex: i,
           content: responses[i].error,
         });
       }
@@ -117,6 +122,24 @@ export default function Output() {
 
                 {/* !------Results------! */}
                 <Results results={message.content.results} />
+
+                {/* !------Action Buttons------! */}
+                {message.content.results && message.content.results.length > 0 && (
+                  <div className="flex flex-col gap-2 mt-3">
+                    <InsightButton 
+                      userInput={queries[message.messageIndex]}
+                      queryResult={message.content.results}
+                      messageIndex={message.messageIndex}
+                      disabled={isLoading}
+                    />
+                    <VisualizationButton 
+                      userInput={queries[message.messageIndex]}
+                      queryResult={message.content.results}
+                      messageIndex={message.messageIndex}
+                      disabled={isLoading}
+                    />
+                  </div>
+                )}
               
               </div>
             ) : message.type === 'error' ? (

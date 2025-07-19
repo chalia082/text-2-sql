@@ -1,6 +1,6 @@
 # config.yaml
 openai:
-  api_key: "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"
+  api_key: "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"
   org_id: "org-9hDc3Evr6SSukX9jiyX1f78R"
 
 postgres:
@@ -25,11 +25,11 @@ paths:
 settings:
   column_top_k: 5
   table_top_k: 3
-  value_top_k: 7  # For value-level (categorical) semantic matches
+  value_top_k: 7 # For value-level (categorical) semantic matches
   similarity_threshold: 0.7
-  forbidden_sql_keywords:            
+  forbidden_sql_keywords:
     - "insert"
-    - "update" 
+    - "update"
     - "delete"
     - "drop"
     - "alter"
@@ -37,20 +37,20 @@ settings:
     - "create"
     - "grant"
     - "revoke"
-  
+
   # Column mapping overrides (for known semantic mismatches)
   column_mappings:
     loan_types:
-      loan_type_name: loan_type      # Maps 'loan_type_name' to 'loan_type' in loan_types table
-  
+      loan_type_name: loan_type # Maps 'loan_type_name' to 'loan_type' in loan_types table
+
   # Logging settings
   log_level: INFO
   log_format: "%(asctime)s - %(levelname)s - %(message)s"
-  
+
   # Performance settings
-  max_query_timeout: 30              # Maximum query execution time in seconds
-  max_result_rows: 1000              # Maximum number of rows to return
-  
+  max_query_timeout: 30 # Maximum query execution time in seconds
+  max_result_rows: 1000 # Maximum number of rows to return
+
   # UI settings
   page_title: "Text-to-SQL Agent"
   page_layout: "centered"
@@ -58,10 +58,7 @@ settings:
 llm:
   model: gpt-3.5-turbo
   temperature: 0.0
-  max_tokens: 2000                   # Maximum tokens for SQL generation
+  max_tokens: 2000 # Maximum tokens for SQL generation
 
-
-  
 # config.yaml
-
 

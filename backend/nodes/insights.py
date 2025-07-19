@@ -27,4 +27,4 @@ insights_node = RunnableLambda(
             )
         })
     )
-) 
+)  

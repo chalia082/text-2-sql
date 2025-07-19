@@ -62,7 +62,7 @@ export default function Results({ results }) {
         </div>
       </div>
 
-      <details className="mt-4">
+      {/* <details className="mt-4">
         <summary className="cursor-pointer text-sm text-gray-600 hover:text-gray-800">
           Show raw JSON data
         </summary>
@@ -71,7 +71,7 @@ export default function Results({ results }) {
             {JSON.stringify(results, null, 2)}
           </pre>
         </div>
-      </details>
+      </details> */}
     </div>
   )
 }

@@ -33,6 +33,10 @@ class AgentState(BaseModel):
     explanation: Optional[str] = None
     suggestions: Optional[List[str]] = None
     final_output: Optional[str] = None
+    
+    insights: Optional[str] = None
+    visualization_config: Optional[Dict[str, Any]] = None
+    visualization_data: Optional[List[Dict]] = None
 
     # 🐞 General error
     error: Optional[str] = None  # Fallback error if anything goes wrong

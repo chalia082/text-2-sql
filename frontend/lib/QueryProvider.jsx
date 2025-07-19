@@ -11,6 +11,11 @@ export default function QueryProvider({ children }) {
   const [currentQueryIndex, setCurrentQueryIndex] = useState(-1);
   const [responses, setResponses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [insights, setInsights] = useState([]);
+  const [insightsLoading, setInsightsLoading] = useState(false);
+  const [visualizations, setVisualizations] = useState([]);
+  const [visualizationsLoading, setVisualizationsLoading] = useState(false);
+
 
   const toggleInput = () => {
     setIsSubmitted(true)
@@ -18,6 +23,14 @@ export default function QueryProvider({ children }) {
 
   const toggleLoading = (state) => {
     setIsLoading(state)
+  }
+
+  const toggleInsightsLoading = (loading) => {
+    setInsightsLoading(loading);
+  }
+
+  const toggleVisualizationsLoading = (loading) => {
+    setVisualizationsLoading(loading);
   }
 
   const addQuery = (newQuery) => {
@@ -29,12 +42,22 @@ export default function QueryProvider({ children }) {
     setResponses(prev => [...prev, newResponse]);
   }
 
+  const addInsight = (insight) => {
+    setInsights(prev => [...prev, insight]);
+  }
+
+  const addVisualization = (visualization) => {
+    setVisualizations(prev => [...prev, visualization]);
+  }
+
   const clearChat = () => {
     setIsSubmitted(false)
     setQueries([])
     setCurrentQueryIndex(-1)
     setResponses([])
     setIsLoading(false)
+    setInsights([])
+    setVisualizations([])
   }
 
   return (
@@ -45,12 +68,20 @@ export default function QueryProvider({ children }) {
         currentQueryIndex, 
         responses, 
         queries, 
+        insights,
+        insightsLoading,
+        visualizations,
+        visualizationsLoading,
         setCurrentQueryIndex, 
         addQuery, 
         toggleInput,
         toggleLoading,
         addResponse,
-        clearChat 
+        addInsight,
+        toggleInsightsLoading,
+        addVisualization,
+        toggleVisualizationsLoading,
+        clearChat, 
       }}
     >
 			{children}

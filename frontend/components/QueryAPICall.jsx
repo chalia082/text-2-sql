@@ -3,7 +3,7 @@
 import { useQueryContext } from "@/lib/QueryProvider";
 import React, { useEffect } from "react";
 
-export default function APICall() {
+export default function QueryAPICall() {
   const { queries, currentQueryIndex, addResponse, toggleLoading } = useQueryContext();
   
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function APICall() {
       const currentQuery = queries[currentQueryIndex];
 
       toggleLoading(true);
-      const apiURI = process.env.NEXT_PUBLIC_TEST_API_URI;
+      const apiURI = process.env.NEXT_PUBLIC_QUERY_API_URI;
       console.log(currentQuery);
       
       try { 

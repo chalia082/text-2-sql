@@ -7,6 +7,7 @@ from flask_cors import CORS
 import logging
 from datetime import datetime
 import traceback
+import pandas as pd
 
 from graph import create_graph
 from state import AgentState
@@ -33,6 +34,176 @@ def health_check():
     "graph_initialized": text_to_sql_graph is not None
   }), 200
   
+  
+@app.route('/insights', methods=['POST'])
+def get_insights():
+  try:
+    if not request.is_json:
+      return jsonify({
+        "error": "Content-Type must be application/json",
+        "status": "error"
+      }),
+      
+    data = request.get_json()
+    
+    if not data or 'user_input' not in data or 'query_result' not in data:
+      return jsonify({
+        "error": "Missing required fields: user_input, query_result",
+        "status": "error"
+      }), 400
+      
+    user_input = data.get('user_input', '').strip()
+    query_result = data.get('query_result', [])
+    
+    if not user_input:
+      return jsonify({
+        "error": "user_input cannot be empty",
+        "status": "error"
+      }), 400
+      
+    if isinstance(query_result, list) and query_result:
+      result_df = pd.DataFrame(query_result)
+    else:
+      return jsonify({
+        "error": "No data available for insights generation",
+        "status": "error"
+      }), 400
+      
+    from nodes.insights import insights_node
+    state = AgentState(user_input=user_input, query_result=result_df)
+    insights_state = insights_node.invoke(state)
+    
+    response_data = {
+      "status": "success",
+      "timestamp": datetime.now().isoformat(),
+      "user_input": user_input,
+      "insights": insights_state.explanation,
+      "data_summary": {
+        "row_count": len(result_df),
+        "columns": result_df.columns.tolist()
+      }
+    }
+    
+    logger.info("✅ Insights generated successfully")
+    return jsonify(response_data), 200
+  
+  except Exception as e:
+    error_msg = str(e)
+    logger.error(f"❌ Error generating insights: {error_msg}")
+    logger.error(traceback.format_exc())
+    
+    return jsonify({
+        "status": "error",
+        "error": error_msg,
+        "timestamp": datetime.now().isoformat()
+    }), 500
+
+@app.route('/visualization', methods=["POST"])
+def get_visualization():
+  """
+  Generate visualization configuration from query results
+  
+  Expected JSON payload:
+  {
+      "user_input": "Show me all customers from New York",
+      "query_result": [...],  # Query result data
+      "session_id": "optional_session_id"
+  }
+  """
+  try:
+    if not request.is_json:
+      return jsonify({
+        "error": "Content-Type must be application/json",
+        "status": "error"
+      }), 400
+    
+    data = request.get_json()
+    
+    if not data or 'user_input' not in data or 'query_result' not in data:
+      return jsonify({
+        "error": "Missing required fields: user_input, query_result",
+        "status": "error"
+      }), 400
+    
+    user_input = data.get('user_input', '').strip()
+    query_result = data.get('query_result', [])
+    
+    if not user_input:
+      return jsonify({
+        "error": "user_input cannot be empty",
+        "status": "error"
+      }), 400
+    
+    # Convert query_result to DataFrame if it's a list of dicts
+    if isinstance(query_result, list) and query_result:
+      result_df = pd.DataFrame(query_result)
+    else:
+      return jsonify({
+        "error": "No data available for visualization",
+        "status": "error"
+      }), 400
+    
+    # Create state and generate visualization
+    from nodes.visualization import visualization_node
+    state = AgentState(user_input=user_input, query_result=result_df)
+    vis_state = visualization_node.invoke(state)
+    
+    # Parse visualization suggestions
+    visualization_config = None
+    explanation = None
+    
+    if vis_state.suggestions:
+      try:
+        import json
+        # Split LLM response into explanation and JSON
+        suggestion_lines = vis_state.suggestions.split('\n', 1)
+        explanation = suggestion_lines[0].strip()
+        suggestion_json = suggestion_lines[1].strip() if len(suggestion_lines) > 1 else '{}'
+        visualization_config = json.loads(suggestion_json)
+        
+        # Process data based on visualization config
+        top_n = visualization_config.get("top_n")
+        chart_type = visualization_config.get("chart_type")
+        
+        processed_data = query_result
+        if top_n and isinstance(top_n, int):
+          if chart_type in ["bar", "line"] and visualization_config.get("y"):
+            processed_data = result_df.sort_values(visualization_config["y"], ascending=False).head(top_n).to_dict('records')
+          elif chart_type == "pie" and visualization_config.get("values"):
+            processed_data = result_df.sort_values(visualization_config["values"], ascending=False).head(top_n).to_dict('records')
+        
+      except Exception as parse_error:
+        logger.warning(f"Failed to parse visualization config: {str(parse_error)}")
+        explanation = "Unable to generate visualization configuration"
+        visualization_config = None
+        processed_data = query_result
+    
+    response_data = {
+      "status": "success",
+      "timestamp": datetime.now().isoformat(),
+      "user_input": user_input,
+      "explanation": explanation,
+      "visualization_config": visualization_config,
+      "visualization_data": processed_data,
+      "data_summary": {
+        "row_count": len(result_df),
+        "columns": result_df.columns.tolist()
+      }
+    }
+    
+    logger.info("✅ Visualization config generated successfully")
+    return jsonify(response_data), 200
+    
+  except Exception as e:
+    error_msg = str(e)
+    logger.error(f"❌ Error generating visualization: {error_msg}")
+    logger.error(traceback.format_exc())
+    
+    return jsonify({
+        "status": "error",
+        "error": error_msg,
+        "timestamp": datetime.now().isoformat()
+    }), 500
 
 @app.route('/query', methods=['POST'])
 def process_query():
@@ -98,6 +269,9 @@ def process_query():
       explanation=None,
       suggestions=None,
       final_output=None,
+      insights=None,
+      visualization_config=None,
+      visualization_data=None,
       error=None
     )
     
@@ -168,7 +342,9 @@ def process_query():
       "explanation": result.get("explanation"),
       "suggestions": result.get("suggestions", []),
       "final_output": result.get("final_output"),
-      # "final_output": result.final_output,
+      "insights": result.get("insights"),
+      "visualization_config": result.get("visualization_config"),
+      "visualization_data": result.get("visualization_data"),
       "error": result.get("error")
     }
     

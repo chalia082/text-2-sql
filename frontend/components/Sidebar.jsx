@@ -72,16 +72,16 @@ export default function Sidebar() {
               {expanded ? <p>Close sidebar</p> : <p>Open sidebar</p>}
             </TooltipContent>
           </Tooltip>
-          <div className={`w-full ${transition_custom}`}>
+          <div className={`w-full space-y-3 ${transition_custom}`}>
             {options.map((option, o) => (
-              <div key={o} className={`flex items-center hover:bg-black/10 p-2  cursor-pointer ${transition_custom} ${expanded ? "w-full gap-1 rounded-xl" : "w-fit gap-0 rounded-full"}`}>
+              <div key={o} className={`flex items-center hover:bg-black/10 p-2 cursor-pointer ${transition_custom} ${expanded ? "w-full gap-1 rounded-xl" : "w-fit gap-0 rounded-full"}`}>
                 <Tooltip>
                   <TooltipTrigger asChild disabled={expanded}>
                     <option.icon className="size-5 text-[#6f6f6f]"/>
                   </TooltipTrigger>
                   <TooltipContent className={expanded ? "opacity-0 pointer-events-none" : 'opacity-100'}>{option.label}</TooltipContent>
                 </Tooltip>
-                <span className={`text-[12px] truncate leading-none ${transition_custom} ${ expanded ? 'w-32' : 'w-0 opacity-100' }`}>
+                <span className={`text-sm truncate leading-none ${transition_custom} ${ expanded ? 'w-32' : 'w-0 opacity-100' }`}>
                   {option.label}
                 </span>
               </div>
@@ -89,12 +89,12 @@ export default function Sidebar() {
           </div>
         </div>
         <div className="flex flex-col">
-          <h3 className={`text-sm p-1 text-[#6f6f6f] truncate text-nowrap ${transition_custom} ${ expanded ? "w-fit opacity-100" : "w-0 opacity-0" }`} >Chat history</h3>
-          <ul className={`flex flex-col ${ expanded ? "w-full opacity-100" : "w-0 opacity-0" }`} >
+          <h3 className={`text-sm px-2  text-[#6f6f6f] truncate text-nowrap ${transition_custom} ${ expanded ? "w-fit opacity-100" : "w-0 opacity-0" }`} >Chat history</h3>
+          <ul className={`flex flex-col py-2 ${ expanded ? "w-full opacity-100" : "w-0 opacity-0" }`} >
             {sampleChatHistory.map((item) => (
               <li
                 key={item.id}
-                className={`text-sm truncate tracking-tight cursor-pointer hover:bg-black/10 p-1 rounded-lg 
+                className={`text-sm truncate tracking-tight cursor-pointer hover:bg-black/10 p-2 rounded-lg 
                   ${transition_custom} 
                   ${expanded ? "w-full opacity-100" : "w-0 opacity-0" }
                 `}
