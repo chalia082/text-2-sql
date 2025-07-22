@@ -1,0 +1,106 @@
+[
+  {
+    "type": "relationship",
+    "from_table": "accounts",
+    "from_column": "customer_id",
+    "to_table": "customers",
+    "to_column": "customer_id",
+    "description": "Each account belongs to a customer. Join accounts.customer_id to customers.customer_id."
+  },
+  {
+    "type": "relationship",
+    "from_table": "accounts",
+    "from_column": "branch_id",
+    "to_table": "branches",
+    "to_column": "branch_id",
+    "description": "Each account is held at a branch. Join accounts.branch_id to branches.branch_id."
+  },
+  {
+    "type": "relationship",
+    "from_table": "accounts",
+    "from_column": "account_type_id",
+    "to_table": "account_types",
+    "to_column": "account_type_id",
+    "description": "Each account has a type. Join accounts.account_type_id to account_types.account_type_id."
+  },
+  {
+    "type": "relationship",
+    "from_table": "transactions",
+    "from_column": "account_id",
+    "to_table": "accounts",
+    "to_column": "account_id",
+    "description": "Each transaction is linked to an account. Join transactions.account_id to accounts.account_id."
+  },
+  {
+    "type": "relationship",
+    "from_table": "loans",
+    "from_column": "customer_id",
+    "to_table": "customers",
+    "to_column": "customer_id",
+    "description": "Each loan is taken by a customer. Join loans.customer_id to customers.customer_id."
+  },
+  {
+    "type": "relationship",
+    "from_table": "loans",
+    "from_column": "account_id",
+    "to_table": "accounts",
+    "to_column": "account_id",
+    "description": "Each loan is associated with an account. Join loans.account_id to accounts.account_id."
+  },
+  {
+    "type": "relationship",
+    "from_table": "loans",
+    "from_column": "loan_type_id",
+    "to_table": "loan_types",
+    "to_column": "loan_type_id",
+    "description": "Each loan has a type. Join loans.loan_type_id to loan_types.loan_type_id."
+  },
+  {
+    "type": "relationship",
+    "from_table": "loan_payments",
+    "from_column": "loan_id",
+    "to_table": "loans",
+    "to_column": "loan_id",
+    "description": "Each loan payment is for a loan. Join loan_payments.loan_id to loans.loan_id."
+  },
+  {
+    "type": "relationship",
+    "from_table": "credit_cards",
+    "from_column": "customer_id",
+    "to_table": "customers",
+    "to_column": "customer_id",
+    "description": "Each credit card is owned by a customer. Join credit_cards.customer_id to customers.customer_id."
+  },
+  {
+    "type": "relationship",
+    "from_table": "credit_cards",
+    "from_column": "account_id",
+    "to_table": "accounts",
+    "to_column": "account_id",
+    "description": "Each credit card is linked to an account. Join credit_cards.account_id to accounts.account_id."
+  },
+  {
+    "type": "relationship",
+    "from_table": "card_transactions",
+    "from_column": "card_id",
+    "to_table": "credit_cards",
+    "to_column": "card_id",
+    "description": "Each card transaction is made with a credit card. Join card_transactions.card_id to credit_cards.card_id."
+  },
+  {
+    "type": "relationship",
+    "from_table": "atm_withdrawals",
+    "from_column": "account_id",
+    "to_table": "accounts",
+    "to_column": "account_id",
+    "description": "Each ATM withdrawal is from an account. Join atm_withdrawals.account_id to accounts.account_id."
+  },
+  {
+    "type": "relationship",
+    "from_table": "employees",
+    "from_column": "branch_id",
+    "to_table": "branches",
+    "to_column": "branch_id",
+    "description": "Each employee works at a branch. Join employees.branch_id to branches.branch_id."
+  }
+] 

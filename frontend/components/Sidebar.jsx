@@ -99,7 +99,7 @@ export default function Sidebar() {
                   ${expanded ? "w-full opacity-100" : "w-0 opacity-0" }
                 `}
               >
-                {item.preview}
+                <span className=""><span className="mr-1">{item.id + "."}</span>{item.preview}</span>
               </li>
             ))}
           </ul>

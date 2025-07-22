@@ -6,13 +6,13 @@ const transition_custom = 'transition-all duration-200 ease-in-out'
 export default function Suggestions() {
 
 	const suggestions = [
-    {name:'Show me the total number of employees in each department.'},
-    {name:'Get the names and salaries of employees who earn more than $100,000.'},
-    {name:'Find the average bonus for employees who joined after 2020.'}
+    {name:'Get the total payment amount made for each loan.'},
+    {name:'List all ATM withdrawals made in the past 30 days.'},
+    {name:'Find the average loan amount for each loan type.'},
   ]
 	
   return (
-    <div className='pb-20'>
+    <div className='pb-52'>
       <h2 className="font-bold text-xl pb-2 pl-2">Suggestions:</h2>
 			<ul className={`flex flex-col `}>
 				{suggestions.map((item, i) => (

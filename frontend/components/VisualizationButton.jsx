@@ -78,11 +78,11 @@ export default function VisualizationButton({
       ) : (
         <div className="bg-[#882cc12e] border border-purple-200 rounded-lg p-4">
           <h3 className="font-semibold text-[#872CC1] mb-2">Data Visualization:</h3>
-          {hasVisualization.explanation && (
+          {/* {hasVisualization.explanation && (
             <p className="text-purple-800 text-sm mb-4">
               {hasVisualization.explanation}
             </p>
-          )}
+          )} */}
           
           {hasVisualization.visualizationConfig && hasVisualization.visualizationData ? (
             <ChartRenderer

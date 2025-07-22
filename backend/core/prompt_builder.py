@@ -82,6 +82,17 @@ def match_relevant_values(query: str) -> list:
             break
     return results
 
+def match_relevant_relationships(query: str) -> list:
+    top_k = SEM_SEARCH.get('relationship_top_k', 5)
+    query_emb = model.encode([query])[0]
+    hits = client.search(
+        collection_name=COLLECTION_NAME,
+        query_vector=query_emb,
+        limit=top_k,
+        query_filter={"must": [{"key": "type", "match": {"value": "relationship"}}]}
+    )
+    return [hit.payload for hit in hits]
+
 def build_schema_context(hits):
     context_lines = []
     tables_added = set()
@@ -132,6 +143,7 @@ def build_prompt(user_question):
     hits = semantic_search(user_question)
     relevant_tables = match_relevant_tables(user_question)
     relevant_columns = match_relevant_columns(user_question)
+    relevant_relationships = match_relevant_relationships(user_question)
     prompt_table_top_k = SEM_SEARCH['prompt_table_top_k']
     prompt_column_top_k = SEM_SEARCH['prompt_column_top_k']
     top_table = relevant_tables[0] if relevant_tables else None
@@ -139,6 +151,14 @@ def build_prompt(user_question):
     top_columns_str = ', '.join([col.split('.', 1)[1] for col in top_columns[:prompt_column_top_k]]) if top_columns else 'None found'
     use_section = f"Use this table and columns for your SQL:\nTable: {top_table}\nColumns: {top_columns_str}\n" if top_table else ""
     schema_context = build_schema_context(hits)
+    # Add relationship context
+    relationship_context = ""
+    if relevant_relationships:
+        relationship_context = "\nRelevant Relationships:\n"
+        for rel in relevant_relationships:
+            relationship_context += (
+                f"- {rel.get('description', '')} (Join {rel.get('from_table', '')}.{rel.get('from_column', '')} to {rel.get('to_table', '')}.{rel.get('to_column', '')})\n"
+            )
     # Add system instruction for synonym/context mapping
     system_instruction = (
         "When mapping user questions to database tables and columns, use the context and synonyms provided in the schema descriptions. "
@@ -148,7 +168,7 @@ def build_prompt(user_question):
     few_shot_examples = "\n\n---\n\n".join(
         f"Q: {ex['question']}\nA: {ex['sql']}" for ex in getattr(few_shot, 'examples', [])
     )
-    prompt = f"""You are a top-tier SQL generation assistant for a banking database.\n{system_instruction}\nYour job is to translate natural language questions into syntactically correct and efficient SQL queries.\n\nYou must ONLY generate read-only queries (SELECT or WITH). Never use INSERT, UPDATE, DELETE, DROP, etc.\n\nUse these few-shot examples as guidance:\n\n{few_shot_examples}\n\n---\n\n{use_section}\nRelevant Schema Context:\n{schema_context}\n\nQ: {user_question}\nA:"""
+    prompt = f"""You are a top-tier SQL generation assistant for a banking database.\n{system_instruction}\nYour job is to translate natural language questions into syntactically correct and efficient SQL queries.\n\nYou must ONLY generate read-only queries (SELECT or WITH). Never use INSERT, UPDATE, DELETE, DROP, etc.\n\nUse these few-shot examples as guidance:\n\n{few_shot_examples}\n\n---\n\n{use_section}\nRelevant Schema Context:\n{schema_context}{relationship_context}\n\nQ: {user_question}\nA:"""
     return prompt
 
 if __name__ == "__main__":
