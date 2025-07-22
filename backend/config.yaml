@@ -18,7 +18,7 @@ log_level: INFO
 
 storage:
   # Where to store all the data
-  storage_path: "C:/Users/Simran/Documents/Github/text-2-sql/backend/qdrant"
+  storage_path: "C:/Users/DeepanshuChalia/Documents/bitbucket/text-2-sql/backend_new/qdrant"
   # Where to store snapshots
   snapshots_path: ./snapshots
 
