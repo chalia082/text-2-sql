@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import time
-from graph import app
+from graph import create_graph
 from state import AgentState
 from core.db_utils import run_query
 
@@ -22,6 +22,9 @@ else:
     questions_text = st.text_area("Or paste questions (one per line):")
     if questions_text:
         questions = [q.strip() for q in questions_text.splitlines() if q.strip()]
+        
+
+app = create_graph()
 
 # Batch evaluation function
 def batch_evaluate(questions):

@@ -15,7 +15,7 @@ client.recreate_collection(
 )
 
 # Load metadata
-with open("metadata_template.json", "r", encoding="utf-8") as f:
+with open("core/metadata_template.json", "r", encoding="utf-8") as f:
     metadata = json.load(f)
 
 model = SentenceTransformer(config['sentence_transformer']['model'])

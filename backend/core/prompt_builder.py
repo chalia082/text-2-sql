@@ -175,4 +175,4 @@ if __name__ == "__main__":
     user_question = input("Enter your question: ")
     prompt = build_prompt(user_question)
     print("\n--- FINAL PROMPT ---\n")
-    print(prompt)
+    print(prompt) 

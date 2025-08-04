@@ -29,6 +29,44 @@ export default function Output() {
     if (responses[i]) {
       if (responses[i].type === 'success' && responses[i].response) {
         const responseData = responses[i].response;
+        const debugInformation = [
+          { 
+            heading: 'Detected Intent',
+            value: responseData.detected_intent
+          },
+          { 
+            heading: 'Relevant Schema Context',
+            value: responseData.relevant_schema_context
+          },
+          { 
+            heading: 'Relevant Tables',
+            value: responseData.relevant_tables
+          },
+          { 
+            heading: 'Relevant Columns',
+            value: responseData.relevant_columns
+          },
+          { 
+            heading: 'Used Prompt',
+            value: responseData.used_prompt
+          },
+          { 
+            heading: 'Query Metadata',
+            value: responseData.query_metadata
+          },
+          { 
+            heading: 'Execution Time',
+            value: responseData.execution_time
+          },
+          { 
+            heading: 'Schema Description',
+            value: responseData.schema_description
+          },
+          { 
+            heading: 'Prompt Sent to LLM',
+            value: responseData.prompt_sent_to_llm
+          }
+        ];
         chatMessages.push({
           id: `response-${i}`,
           type: 'response',
@@ -40,6 +78,7 @@ export default function Output() {
             suggestions: responseData.suggestions || [],
             results: responseData.query_result || [],
           },
+          debugInfo: debugInformation
         });
       } else if (responses[i].type === 'error') {
         chatMessages.push({
@@ -58,11 +97,11 @@ export default function Output() {
     }
   }, [chatMessages.length, isLoading])
 
-  chatMessages.map((message) => {
-    if (message.type === 'response') {
-      console.log("message:", message);
-    }
-  })
+  // chatMessages.map((message) => {
+  //   if (message.type === 'response') {
+  //     console.log("message:", message);
+  //   }
+  // })
 
   return ( 
     <div className='flex flex-col gap-10 w-full'>
@@ -121,7 +160,7 @@ export default function Output() {
                 )}
 
                 {/* !------Results------! */}
-                <Results results={message.content.results} />
+                <Results results={message.content.results} debugInfo={message.debugInfo} />
 
                 {/* !------Action Buttons------! */}
                 {message.content.results && message.content.results.length > 0 && (

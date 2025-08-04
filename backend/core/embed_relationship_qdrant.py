@@ -9,7 +9,7 @@ from qdrant_client.models import PointStruct
 COLLECTION_NAME = "schema_embeddings"
 
 # Load relationship metadata
-with open("schema_relationship_metadata.json", "r", encoding="utf-8") as f:
+with open("core/schema_relationship_metadata.json", "r", encoding="utf-8") as f:
     relationships = json.load(f)
 
 model = SentenceTransformer(config['sentence_transformer']['model'])

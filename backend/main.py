@@ -1,5 +1,5 @@
 import streamlit as st
-from graph import app
+from graph import create_graph
 from state import AgentState
 from core.db_utils import run_query  # ✅ Make sure this file exists
 import numpy as np
@@ -8,6 +8,8 @@ from core.config_loader import load_config
 
 # Load configuration
 config = load_config()
+
+app = create_graph()
 
 # ✅ Always make this the first Streamlit call
 st.set_page_config(

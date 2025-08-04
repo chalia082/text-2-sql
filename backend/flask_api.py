@@ -272,7 +272,11 @@ def process_query():
       insights=None,
       visualization_config=None,
       visualization_data=None,
-      error=None
+      error=None,
+      debug_info={
+        'prompt': None,  # Will store the prompt sent to LLM
+        'schema_context': None  # Will store relevant schema context
+      }
     )
     
     # Execute the graph
@@ -326,6 +330,8 @@ def process_query():
       "timestamp": datetime.now().isoformat(),
       "execution_time": execution_time,
       "user_input": user_input,
+      "prompt_sent_to_llm": result.get("debug_info", {}).get("prompt"),
+      "relevant_schema_context": result.get("debug_info", {}).get("schema_context"),
       "detected_intent": result.get("detected_intent"),
       "relevant_columns": result.get("relevant_columns", []),
       "relevant_tables": result.get("relevant_tables", []),
