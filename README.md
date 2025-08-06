@@ -2,11 +2,22 @@
 
 > Transform natural language queries into SQL with AI-powered intelligence and real-time database insights.
 
-## Project Demo
 
-https://github.com/chalia082/text-2-sql/public/text-2-sql_demo.mp4
+## Project Demo Video
 
-*Watch the full demo video to see the Text-to-SQL Agent in action!*
+### 1. Authentication
+![Authentication Demo](public/auth.gif)
+
+### 2. Query Example 1
+![Query 1 Demo](public/query1.gif)
+
+### 3. Query Example 2
+![Query 2 Demo](public/query2.gif)
+
+### 4. Query Example 3
+![Query 3 Demo](public/query3.gif)
+
+*See the GIFs above for quick feature highlights, or watch the full demo video for a complete walkthrough!*
 
 ## Features
 
