@@ -1,4 +1,4 @@
-# 🔷 Text-to-SQL Agent
+# Text-to-SQL Agent
 
 > Transform natural language queries into SQL with AI-powered intelligence and real-time database insights.
 
@@ -35,6 +35,12 @@ text-2-sql/
 │   └── utils/             # API utilities
 └── samlple_queries/       # Example queries
 ```
+
+## Database Schema & ERD
+
+![Database ERD](public/ERD.png)
+
+*Entity Relationship Diagram showing the banking database structure*
 
 ## Quick Start
 
