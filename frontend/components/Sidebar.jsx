@@ -105,7 +105,7 @@ export default function Sidebar() {
           </ul>
         </div>
         {/*-----footer-----*/}
-        <div className="mt-auto justify-self-start p-1">
+        {/* <div className="mt-auto justify-self-start p-1">
           <svg
             width="28"
             height="20"
@@ -134,7 +134,7 @@ export default function Sidebar() {
               />
             </g>
           </svg>
-        </div>
+        </div> */}
       </div>
     </div>
   );

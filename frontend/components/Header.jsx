@@ -21,7 +21,8 @@ export default function Header() {
       }}
     >
       <div className='relative container mx-auto bg-transparent flex justify-between grow px-6 py-4 items-center'>
-        <div className='cursor-pointer' onClick={handleClick}><Image src={'/WL_logo.png'} height={200} width={200} alt='WorldLink logo'/></div>
+        {/* <div className='cursor-pointer' onClick={handleClick}><Image src={'/WL_logo.png'} height={200} width={200} alt='WorldLink logo'/></div> */}
+        <div className='cursor-pointer hover:bg-black/10 p-2 hover:font-bold rounded-full transition duration-100 ease-in' onClick={handleClick}><span className="">CLEAR CHAT</span></div>
         <header className="flex justify-end items-center">
           <SignedOut>
             <SignInButton />

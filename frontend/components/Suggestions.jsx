@@ -12,7 +12,7 @@ export default function Suggestions() {
   ]
 	
   return (
-    <div className='pb-52'>
+    <div className='pb-52 px-40 w-fit'>
       <h2 className="font-bold text-xl pb-2 pl-2">Suggestions:</h2>
 			<ul className={`flex flex-col `}>
 				{suggestions.map((item, i) => (
