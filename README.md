@@ -4,7 +4,7 @@
 
 ## Project Demo
 
-https://github.com/yourusername/text-2-sql/assets/public/text-2-sql_demo.mp4
+https://github.com/chalia082/text-2-sql/public/text-2-sql_demo.mp4
 
 *Watch the full demo video to see the Text-to-SQL Agent in action!*
 
