@@ -4,9 +4,11 @@
 
 ## Project Demo
 
-**Watch the demo:** [Text-to-SQL Agent Demo](https://drive.google.com/file/d/1l8nSv0MfKnzmMLMbCY9QcfcDGKta4kzp/view?usp=sharing)
+https://github.com/yourusername/text-2-sql/assets/public/text-2-sql_demo.mp4
 
-## ✨ Features
+*Watch the full demo video to see the Text-to-SQL Agent in action!*
+
+## Features
 
 - **AI-Powered Query Generation**: Convert natural language to SQL using advanced language models
 - **Semantic Search**: Intelligent table and column matching using embeddings
@@ -87,7 +89,7 @@ text-2-sql/
 3. **Open your browser**
    Navigate to `http://localhost:3000`
 
-## 💡 Usage Examples
+## Usage Examples
 
 ### Sample Queries
 
@@ -105,7 +107,7 @@ Try these natural language queries:
 3. **Results Display**: View formatted results with charts and insights
 4. **SQL Transparency**: See the generated SQL for verification
 
-## 🔧 Configuration
+## Configuration
 
 ### Backend Configuration (`backend/core/config.yaml`)
 
@@ -138,7 +140,7 @@ The system includes built-in protection against:
 - TRUNCATE operations
 - CREATE operations
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Backend
 - **Streamlit**: Web application framework
@@ -154,7 +156,7 @@ The system includes built-in protection against:
 - **Clerk**: Authentication
 - **React Table**: Data tables
 
-## 📊 Database Schema
+## Database Schema
 
 The system is designed for banking data analysis with tables including:
 - Customer information
@@ -163,7 +165,7 @@ The system is designed for banking data analysis with tables including:
 - Branch data
 - Loan information
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
