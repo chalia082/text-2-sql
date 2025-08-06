@@ -1,0 +1,5 @@
+Which branches have the highest total account balances, and how does this relate to the number of customers per branch?
+
+How has the total account balance at each branch changed month over month in the past year?
+
+Update the customers who have paid their loans
